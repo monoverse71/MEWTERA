@@ -635,14 +635,14 @@ body.pdp-on main>section:not(#pdp){display:none}
  function openPdp(id,from){
   if(!pdpOpen)pdY=window.scrollY;
   pdFrom=from||null;renderPdp(id);pdpOpen=true;document.body.classList.add('pdp-on');$('pdp').hidden=false;
-  window.scrollTo(0,0);$('pdT').focus({preventScroll:true});
+  window.scrollTo({top:0,behavior:'instant'});$('pdT').focus({preventScroll:true});
   try{if(!pushed){history.pushState({pdp:id},'');pushed=true;}}catch(x){}
  }
  function closePdp(restore,fromPop){
   if(!pdpOpen)return;
   pdpOpen=false;document.body.classList.remove('pdp-on');$('pdp').hidden=true;
   if(pushed&&!fromPop){pushed=false;ignorePop=true;setTimeout(function(){ignorePop=false;},400);try{history.back();}catch(x){ignorePop=false;}}else pushed=false;
-  if(restore){window.scrollTo(0,pdY);if(pdFrom&&document.body.contains(pdFrom))pdFrom.focus({preventScroll:true});}
+  if(restore){window.scrollTo({top:pdY,behavior:'instant'});if(pdFrom&&document.body.contains(pdFrom))pdFrom.focus({preventScroll:true});}
  }
  window.addEventListener('popstate',function(){if(ignorePop){ignorePop=false;return;}if(pdpOpen)closePdp(true,true);});
  function openSg(){sgOpener=document.activeElement;$('sgm').hidden=false;lock(true);$('sgT').focus();}
