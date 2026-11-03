@@ -288,6 +288,10 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
 @media(max-width:860px){.adm-grid{grid-template-columns:1fr}.mm{display:inline-flex;align-items:center}.adm-nav{display:none;position:static;flex-direction:row;flex-wrap:wrap}.adm-nav.open{display:flex}.two{grid-template-columns:1fr}}
 @media(max-width:720px){.rt thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.rt,.rt tbody,.rt tr,.rt td{display:block}.rt tr{border:1px solid var(--line);padding:8px 12px;margin-bottom:10px}.rt td{display:flex;justify-content:space-between;gap:12px;border:0;padding:6px 0;text-align:right;min-width:0}.rt td::before{content:attr(data-l);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);text-align:left;flex:none}}
 
+
+/* Admin catalog workspace */
+.adm-wrap{max-width:1280px;margin:0 auto;padding:24px var(--pad) 72px}.adm-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0}.adm-heading{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}.adm-heading h2,.adm-main h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3vw,40px)}.adm-controls{margin:20px 0}.adm-main .f input,.adm-main .f textarea{width:100%;padding:12px;border:1px solid var(--ink);font:inherit;border-radius:0}.adm-main .f input[type=color]{height:46px;padding:4px}.adm-main .f select{width:100%;height:46px;padding:0 12px;border:1px solid var(--ink);background:#fff;font:inherit}.adm-main .rt button{font-size:12px;text-decoration:underline;margin:0 5px}.adm-tab{border:1px solid var(--line)!important}.adm-tab[aria-current=page]{background:var(--ink);color:#fff}.adm-grid{margin-top:24px}.adm-login{max-width:520px;margin:7vh auto}.adm-login h1{font-size:clamp(42px,6vw,68px)}
+@media(max-width:860px){.adm-metrics{grid-template-columns:1fr}.adm-grid{grid-template-columns:1fr}.adm-nav{position:static;display:flex;flex-direction:row;flex-wrap:wrap}.adm-main .two{grid-template-columns:1fr}}
 /* Tablet */
 @media(max-width:1024px){
  .hdr{grid-template-columns:auto 1fr auto;gap:16px}
@@ -750,13 +754,54 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
         <article class="pnl"><h3>Authentication</h3><p class="big">MFA</p><span class="b ok">AAL2 session</span></article>
         <article class="pnl"><h3>Catalog</h3><p class="big" id="admProductCount">—</p><span class="b in">Published products</span></article>
       </div>
-      <div class="pnl">
-        <h3>Management modules</h3>
-        <div class="adm-modules">
-          <div><strong>Products & Variants</strong><p>Product creation, pricing, size and colour management.</p><span class="b wn">Next implementation</span></div>
-          <div><strong>Categories & Images</strong><p>Category setup and product image management.</p><span class="b wn">Next implementation</span></div>
-          <div><strong>Inventory</strong><p>Stock overview and secure stock adjustment workflow.</p><span class="b wn">Next implementation</span></div>
-          <div><strong>Orders & Payments</strong><p>Order processing and manual payment review.</p><span class="b wn">Next implementation</span></div>
+      <div class="adm-grid">
+        <aside class="adm-nav" aria-label="Admin navigation">
+          <button type="button" class="adm-tab" data-adm-tab="products" aria-current="page">Products & Variants</button>
+          <button type="button" class="adm-tab" data-adm-tab="categories">Categories</button>
+        </aside>
+        <div class="adm-main">
+          <section id="admProductsPanel" class="pnl">
+            <div class="adm-heading"><div><p class="eyebrow">CATALOG MANAGEMENT</p><h2>Products & Variants</h2><p class="small">Create products, manage pricing and variants. Changes are saved directly to Supabase.</p></div><button type="button" class="btn sm" id="admNewProduct">Add product</button></div>
+            <div class="ctl adm-controls"><div class="grow"><label for="admProductSearch">Search products</label><input id="admProductSearch" type="search" placeholder="Name or slug"></div><div><label for="admProductStatus">Status</label><select id="admProductStatus"><option value="all">All statuses</option><option value="active">Active</option><option value="draft">Draft</option><option value="archived">Archived</option></select></div><button type="button" class="clr" id="admRefreshProducts">Refresh</button></div>
+            <p id="admProductMsg" class="ac-msg" role="status" aria-live="polite"></p>
+            <div class="tw"><table class="rt"><thead><tr><th>Product</th><th>Category</th><th>Variants</th><th>Status</th><th>Actions</th></tr></thead><tbody id="admProductRows"><tr><td colspan="5">Loading products…</td></tr></tbody></table></div>
+            <div id="admProductEditor" class="pnl" hidden>
+              <h3 id="admEditorTitle">New product</h3>
+              <form id="admProductForm">
+                <input type="hidden" id="admProductId">
+                <div class="two">
+                  <div class="f"><label for="admName">Product name *</label><input id="admName" required maxlength="160"></div>
+                  <div class="f"><label for="admSlug">Slug *</label><input id="admSlug" required maxlength="180" pattern="[a-z0-9]+(?:-[a-z0-9]+)*"></div>
+                </div>
+                <div class="two">
+                  <div class="f"><label for="admCategory">Category</label><select id="admCategory"><option value="">No category</option></select></div>
+                  <div class="f"><label for="admStatus">Status</label><select id="admStatus"><option value="draft">Draft</option><option value="active">Active</option><option value="archived">Archived</option></select></div>
+                </div>
+                <div class="f"><label for="admDescription">Description</label><textarea id="admDescription" rows="4" maxlength="5000"></textarea></div>
+                <div class="row-btns"><button class="btn sm" type="submit" id="admSaveProduct">Save product</button><button class="btn sm alt" type="button" id="admCancelProduct">Cancel</button></div>
+              </form>
+              <div id="admVariantEditor" hidden>
+                <h3 style="margin-top:24px">Add variant</h3>
+                <form id="admVariantForm">
+                  <div class="two">
+                    <div class="f"><label for="admSku">SKU *</label><input id="admSku" required maxlength="80"></div>
+                    <div class="f"><label for="admVariantSize">Size *</label><input id="admVariantSize" required maxlength="30" placeholder="S, M, L, XL"></div>
+                  </div>
+                  <div class="two">
+                    <div class="f"><label for="admColorName">Colour name *</label><input id="admColorName" required maxlength="60"></div>
+                    <div class="f"><label for="admColorHex">Colour hex</label><input id="admColorHex" type="color" value="#111111"></div>
+                  </div>
+                  <div class="two">
+                    <div class="f"><label for="admPrice">Price (BDT) *</label><input id="admPrice" type="number" min="0.01" step="0.01" required></div>
+                    <div class="f"><label for="admVariantStatus">Variant status</label><select id="admVariantStatus"><option value="active">Active</option><option value="draft">Draft</option><option value="archived">Archived</option></select></div>
+                  </div>
+                  <button class="btn sm" type="submit">Add variant</button>
+                </form>
+                <div class="tw"><table class="rt"><thead><tr><th>SKU</th><th>Size</th><th>Colour</th><th>Price</th><th>Status</th><th></th></tr></thead><tbody id="admVariantRows"></tbody></table></div>
+              </div>
+            </div>
+          </section>
+          <section id="admCategoriesPanel" class="pnl" hidden><h2>Categories</h2><p class="small">Category creation and management will be enabled in the next module. Existing categories are available in product editing.</p><div id="admCategoryRows"></div></section>
         </div>
       </div>
       <p id="admDashMessage" class="ac-msg" role="status"></p>
@@ -797,6 +842,56 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
  const admSection=$('adm'), admLogin=$('admLogin'), admDash=$('admDashboard');
  const admMsg=$('admMessage'), admLoginForm=$('admLoginForm'), admMfaForm=$('admMfaForm');
  let pendingMfaFactor=null;
+ 
+ const adminState={products:[],variants:[],categories:[],editing:null};
+ const admText=(id,value)=>{const el=$(id);if(el)el.textContent=value||'';};
+ function admNotice(message,error=false){const el=$('admProductMsg');if(el){el.textContent=message;el.classList.toggle('err',error);}}
+ function slugify(value){return String(value||'').normalize('NFKD').toLowerCase().replace(/[\\u0300-\\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
+ async function loadAdminProducts(){
+   const c=window.MEWTERA_SUPABASE;if(!c)return;
+   admNotice('Loading catalog…');
+   try{
+     const [pr,vr,cr]=await Promise.all([c.from('products').select('*').order('created_at',{ascending:false}),c.from('product_variants').select('*').order('created_at',{ascending:false}),c.from('categories').select('*').order('sort_order',{ascending:true})]);
+     const failed=[pr,vr,cr].find(x=>x.error);if(failed)throw failed.error;
+     adminState.products=pr.data||[];adminState.variants=vr.data||[];adminState.categories=cr.data||[];
+     $('admProductCount').textContent=String(adminState.products.filter(p=>p.status==='active').length);
+     $('admCategory').innerHTML='<option value="">No category</option>'+adminState.categories.map(x=>'<option value="'+esc(x.id)+'">'+esc(x.name)+'</option>').join('');
+     $('admCategoryRows').innerHTML=adminState.categories.length?adminState.categories.map(x=>'<p>'+esc(x.name)+' <span class="b '+(x.is_active?'ok':'in')+'">'+(x.is_active?'Active':'Inactive')+'</span></p>').join(''):'No categories have been created yet.';
+     renderAdminProducts();admNotice('Catalog loaded.');
+   }catch(e){console.error('[MEWTERA admin catalog]',e);admNotice('Could not load catalog: '+e.message,true);}
+ }
+ function renderAdminProducts(){
+   const q=($('admProductSearch').value||'').trim().toLowerCase(),status=$('admProductStatus').value;
+   const rows=adminState.products.filter(p=>(status==='all'||p.status===status)&&(!q||(p.name||'').toLowerCase().includes(q)||(p.slug||'').toLowerCase().includes(q)));
+   $('admProductRows').innerHTML=rows.length?rows.map(p=>{const count=adminState.variants.filter(v=>v.product_id===p.id).length,cat=adminState.categories.find(c=>c.id===p.category_id);return '<tr><td data-l="Product"><strong>'+esc(p.name)+'</strong><br><small>'+esc(p.slug)+'</small></td><td data-l="Category">'+esc(cat?cat.name:'—')+'</td><td data-l="Variants">'+count+'</td><td data-l="Status"><span class="b '+(p.status==='active'?'ok':p.status==='draft'?'wn':'in')+'">'+esc(p.status)+'</span></td><td data-l="Actions"><button type="button" data-edit-product="'+esc(p.id)+'">Edit</button><button type="button" data-manage-variants="'+esc(p.id)+'">Variants</button></td></tr>';}).join(''):'<tr><td colspan="5">No products found. Add your first real product.</td></tr>';
+ }
+ function openProductEditor(product=null){
+   adminState.editing=product?product.id:null;$('admProductEditor').hidden=false;$('admEditorTitle').textContent=product?'Edit product':'New product';$('admProductId').value=product?.id||'';$('admName').value=product?.name||'';$('admSlug').value=product?.slug||'';$('admCategory').value=product?.category_id||'';$('admStatus').value=product?.status||'draft';$('admDescription').value=product?.description||'';$('admVariantEditor').hidden=!product;$('admVariantRows').innerHTML='';if(product)renderAdminVariants(product.id);$('admProductEditor').scrollIntoView({behavior:'smooth',block:'start'});
+ }
+ function renderAdminVariants(productId){const rows=adminState.variants.filter(v=>v.product_id===productId);$('admVariantRows').innerHTML=rows.length?rows.map(v=>'<tr><td data-l="SKU">'+esc(v.sku)+'</td><td data-l="Size">'+esc(v.size)+'</td><td data-l="Colour">'+esc(v.color_name)+'</td><td data-l="Price">'+money(v.price_poisha)+'</td><td data-l="Status">'+esc(v.status)+'</td><td data-l="Action"><button type="button" data-archive-variant="'+esc(v.id)+'">Archive</button></td></tr>').join(''):'<tr><td colspan="6">No variants yet.</td></tr>';}
+ $('admNewProduct').addEventListener('click',()=>openProductEditor());
+ $('admCancelProduct').addEventListener('click',()=>{$('admProductEditor').hidden=true;adminState.editing=null;});
+ $('admName').addEventListener('input',()=>{if(!$('admProductId').value)$('admSlug').value=slugify($('admName').value);});
+ $('admProductSearch').addEventListener('input',renderAdminProducts);$('admProductStatus').addEventListener('change',renderAdminProducts);$('admRefreshProducts').addEventListener('click',loadAdminProducts);
+ $('admProductForm').addEventListener('submit',async e=>{
+   e.preventDefault();const c=window.MEWTERA_SUPABASE,btn=$('admSaveProduct');btn.disabled=true;
+   try{const {data:{session}}=await c.auth.getSession();const payload={name:$('admName').value.trim(),slug:$('admSlug').value.trim(),category_id:$('admCategory').value||null,description:$('admDescription').value.trim()||null,status:$('admStatus').value,updated_at:new Date().toISOString()};
+     let result;if(adminState.editing){result=await c.from('products').update(payload).eq('id',adminState.editing).select().single();}else{payload.created_by=session?.user?.id||null;result=await c.from('products').insert(payload).select().single();}
+     if(result.error)throw result.error;admNotice('Product saved successfully.');await loadAdminProducts();if(!adminState.editing)openProductEditor(result.data);else openProductEditor(result.data);
+   }catch(err){admNotice('Save failed: '+err.message,true);}finally{btn.disabled=false;}
+ });
+ $('admVariantForm').addEventListener('submit',async e=>{
+   e.preventDefault();const c=window.MEWTERA_SUPABASE,productId=adminState.editing;if(!productId){admNotice('Save the product before adding variants.',true);return;}
+   const price=Number($('admPrice').value);if(!Number.isFinite(price)||price<=0){admNotice('Enter a valid price.',true);return;}
+   try{const payload={product_id:productId,sku:$('admSku').value.trim(),size:$('admVariantSize').value.trim(),color_name:$('admColorName').value.trim(),color_hex:$('admColorHex').value,price_poisha:Math.round(price*100),status:$('admVariantStatus').value};const {error}=await c.from('product_variants').insert(payload);if(error)throw error;$('admVariantForm').reset();$('admColorHex').value='#111111';await loadAdminProducts();renderAdminVariants(productId);admNotice('Variant added.');}
+   catch(err){admNotice('Variant could not be added: '+err.message,true);}
+ });
+ document.addEventListener('click',async e=>{
+   const edit=e.target.closest('[data-edit-product]');if(edit){const p=adminState.products.find(x=>x.id===edit.dataset.editProduct);if(p)openProductEditor(p);}
+   const vars=e.target.closest('[data-manage-variants]');if(vars){const p=adminState.products.find(x=>x.id===vars.dataset.manageVariants);if(p)openProductEditor(p);}
+   const arch=e.target.closest('[data-archive-variant]');if(arch&&confirm('Archive this variant?')){const c=window.MEWTERA_SUPABASE;const {error}=await c.from('product_variants').update({status:'archived',updated_at:new Date().toISOString()}).eq('id',arch.dataset.archiveVariant);if(error)admNotice('Archive failed: '+error.message,true);else{await loadAdminProducts();if(adminState.editing)renderAdminVariants(adminState.editing);}}
+   const tab=e.target.closest('[data-adm-tab]');if(tab){document.querySelectorAll('[data-adm-tab]').forEach(x=>x.removeAttribute('aria-current'));tab.setAttribute('aria-current','page');$('admProductsPanel').hidden=tab.dataset.admTab!=='products';$('admCategoriesPanel').hidden=tab.dataset.admTab!=='categories';}
+ });
  function adminRoute(){const active=location.hash==='#admin';if(admSection){admSection.hidden=!active;document.body.classList.toggle('adm-on',active);if(active){window.scrollTo(0,0);checkExistingAdminSession();}}}
  async function verifyAdminSession(){
    const client=window.MEWTERA_SUPABASE;
@@ -821,7 +916,7 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
    if(roleError)throw new Error('Admin role verification failed: '+roleError.message);
    const isAdmin=roleData===true || (Array.isArray(roleData)&&roleData[0]===true) || (roleData&&roleData.is_admin===true);
    if(!isAdmin)throw new Error('This account does not have an active admin role.');
-   admLogin.hidden=true;admDash.hidden=false;$('admExit').hidden=false;
+   admLogin.hidden=true;admDash.hidden=false;$('admExit').hidden=false;loadAdminProducts();
    $('admWelcome').textContent='Dashboard';
    $('admIdentity').textContent=session.user.email+' · Admin access verified';
    $('admProductCount').textContent=String(state.products.length);
