@@ -1,15 +1,23 @@
 
 /*
- * MEWTERA: Supabase client, Phase 1
- * Read-only client initialization. No database writes.
+ * MEWTERA — Supabase Client
+ * Phase 2: Read-only product catalog
+ *
+ * Database reads are handled by index.html.
+ * This file only initializes the Supabase client.
+ *
+ * No checkout, orders, payments, authentication or database writes.
  */
+
 (function (window) {
   'use strict';
 
-  var SUPABASE_URL = 'https://ouicacckzeiiavqnbcwp.supabase.co';
-  var SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_56YAZLp3jY3gHvi0XTtrsA_qrsXCyxj';
+  // Public Supabase configuration
+  var SUPABASE_URL =
+    'https://ouicacckzeiiavqnbcwp.supabase.co';
 
-  var PLACEHOLDER = 'PASTE_SUPABASE_PUBLISHABLE_KEY_HERE';
+  var SUPABASE_PUBLISHABLE_KEY =
+    'sb_publishable_56YAZLp3jY3gHvi0XTtrsA_qrsXCyxj';
 
   var status = {
     configured: false,
@@ -23,25 +31,20 @@
 
   function disable(reason) {
     status.reason = reason;
-    console.warn('[MEWTERA] Supabase disabled: ' + reason);
+
+    console.warn(
+      '[MEWTERA] Supabase disabled:',
+      reason
+    );
   }
 
-  function jwtRole(key) {
-    var parts = key.split('.');
-    if (parts.length !== 3) return null;
-    try {
-      var b64 = parts[1].replace(/-/g, '+').replace(/_/g, '/');
-      while (b64.length % 4) b64 += '=';
-      return (JSON.parse(window.atob(b64)) || {}).role || '';
-    } catch (e) {
-      return '';
-    }
-  }
+  // Reject secret keys
+  var key = String(
+    SUPABASE_PUBLISHABLE_KEY || ''
+  ).trim();
 
-  var key = String(SUPABASE_PUBLISHABLE_KEY || '').trim();
-
-  if (!key || key === PLACEHOLDER) {
-    disable('publishable key not set');
+  if (!key) {
+    disable('publishable key missing');
     return;
   }
 
@@ -51,43 +54,57 @@
   }
 
   if (!/^sb_publishable_/i.test(key)) {
-    var role = jwtRole(key);
-    if (role === 'service_role' || role !== 'anon') {
-      disable('unrecognised or privileged key');
-      return;
-    }
-  }
-
-  if (!/^https:\/\/[a-z0-9]+\.supabase\.co\/?$/i.test(SUPABASE_URL)) {
-    disable('invalid project URL');
+    disable('invalid publishable key format');
     return;
   }
 
-  if (!window.supabase ||
-      typeof window.supabase.createClient !== 'function') {
-    disable('supabase-js library not loaded');
+  // Validate project URL
+  if (
+    !/^https:\/\/[a-z0-9]+\.supabase\.co\/?$/i.test(
+      SUPABASE_URL
+    )
+  ) {
+    disable('invalid Supabase URL');
     return;
   }
 
+  // Check Supabase JS CDN
+  if (
+    !window.supabase ||
+    typeof window.supabase.createClient !== 'function'
+  ) {
+    disable('Supabase JS library not loaded');
+    return;
+  }
+
+  // Initialize client
   try {
-    window.MEWTERA_SUPABASE = window.supabase.createClient(
-      SUPABASE_URL,
-      key,
-      {
-        auth: {
-          persistSession: false,
-          autoRefreshToken: false,
-          detectSessionInUrl: false
+    window.MEWTERA_SUPABASE =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        key,
+        {
+          auth: {
+            persistSession: false,
+            autoRefreshToken: false,
+            detectSessionInUrl: false
+          }
         }
-      }
-    );
+      );
 
     status.configured = true;
     status.ready = true;
     status.reason = 'ok';
-  } catch (e) {
-    window.MEWTERA_SUPABASE = null;
-    disable('client creation failed');
-  }
-})(window);
 
+    console.info(
+      '[MEWTERA] Supabase client initialized successfully.'
+    );
+
+  } catch (error) {
+    window.MEWTERA_SUPABASE = null;
+    disable('client initialization failed');
+
+    console.error(error);
+  }
+
+})(window);
