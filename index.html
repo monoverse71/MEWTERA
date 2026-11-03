@@ -678,6 +678,21 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
 .variant-chip{border:1px solid var(--line);padding:9px 13px;background:#fff}
 .variant-chip[aria-pressed=true]{background:var(--ink);color:#fff}
 @media(max-width:700px){.product-detail{grid-template-columns:1fr;padding:16px}}
+
+/* Secure admin entry and dashboard */
+.adm-page{min-height:70vh;background:#fff}
+.adm-wrap{max-width:1180px;margin:0 auto}
+.adm-login{max-width:480px;margin:70px auto 30px}
+.adm-login h1{font-size:clamp(38px,5vw,58px);margin-bottom:16px}
+.adm-form{margin-top:26px}
+.adm-form input{width:100%;height:48px;padding:0 13px;border:1px solid var(--ink);font:inherit;font-size:16px;border-radius:0;background:#fff}
+.adm-form .btn{margin-top:8px}
+.adm-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:28px 0}
+.adm-metrics .pnl{margin:0}
+.adm-modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.adm-modules>div{border:1px solid var(--line);padding:18px}
+.adm-modules p{font-size:14px;line-height:1.5;color:var(--mu);margin:8px 0 14px}
+@media(max-width:700px){.adm-login{margin:36px auto}.adm-metrics,.adm-modules{grid-template-columns:1fr}}
 </style>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -702,6 +717,52 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
 <section class="sec" id="best" aria-labelledby="bestH"><div class="sec-h"><h2 id="bestH">Featured Products</h2><span>MEWTERA catalog</span></div><div class="grid" id="featuredGrid"><div class="catalog-loading">Loading products…</div></div></section>
 <section class="sec alt" id="collections" aria-labelledby="colH"><div class="sec-h"><h2 id="colH">Collections</h2><span>Browse by category</span></div><p class="intro">Discover the current MEWTERA product range by category.</p><div class="grid" id="collectionGrid"><div class="catalog-loading">Loading categories…</div></div></section>
 <section class="story" id="story" aria-labelledby="storyH"><div><p class="eyebrow">Our Story</p><h2 id="storyH">A different point of view.</h2><p>Everyday essentials. Made for your era.</p><a class="cta" href="#shop">Explore the collection <span aria-hidden="true">→</span></a></div><div class="ph" role="img" aria-label="MEWTERA brand visual">MEWTERA</div></section>
+
+<section id="adm" class="sec adm-page" hidden aria-labelledby="admTitle">
+  <div class="adm-wrap">
+    <div class="adm-top">
+      <a class="logo" href="#top">MEWTERA</a>
+      <div class="adm-act"><span class="b in">SECURE ADMIN</span><button type="button" class="clr" id="admExit" hidden>Sign out</button></div>
+    </div>
+    <div id="admLogin" class="adm-login">
+      <p class="eyebrow">MEWTERA MANAGEMENT</p>
+      <h1 id="admTitle">Admin access</h1>
+      <p class="intro">Sign in with your existing owner or staff account. Admin access requires verified MFA.</p>
+      <form id="admLoginForm" class="adm-form">
+        <div class="f"><label for="admEmail">Email address</label><input id="admEmail" type="email" autocomplete="username" required></div>
+        <div class="f"><label for="admPassword">Password</label><input id="admPassword" type="password" autocomplete="current-password" required></div>
+        <button class="btn" id="admLoginBtn" type="submit">Sign in securely</button>
+      </form>
+      <form id="admMfaForm" class="adm-form" hidden>
+        <p class="note">Enter the 6-digit code from your enrolled authenticator app.</p>
+        <div class="f"><label for="admMfaCode">Authenticator code</label><input id="admMfaCode" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required></div>
+        <button class="btn" type="submit">Verify MFA</button>
+      </form>
+      <p id="admMessage" class="ac-msg" role="status" aria-live="polite"></p>
+      <a class="lnk" href="#top">← Back to storefront</a>
+    </div>
+    <div id="admDashboard" hidden>
+      <p class="eyebrow">MANAGEMENT CONSOLE</p>
+      <h1 id="admWelcome">Dashboard</h1>
+      <p class="intro" id="admIdentity"></p>
+      <div class="adm-metrics">
+        <article class="pnl"><h3>Access status</h3><p class="big">Verified</p><span class="b ok">Admin role confirmed</span></article>
+        <article class="pnl"><h3>Authentication</h3><p class="big">MFA</p><span class="b ok">AAL2 session</span></article>
+        <article class="pnl"><h3>Catalog</h3><p class="big" id="admProductCount">—</p><span class="b in">Published products</span></article>
+      </div>
+      <div class="pnl">
+        <h3>Management modules</h3>
+        <div class="adm-modules">
+          <div><strong>Products & Variants</strong><p>Product creation, pricing, size and colour management.</p><span class="b wn">Next implementation</span></div>
+          <div><strong>Categories & Images</strong><p>Category setup and product image management.</p><span class="b wn">Next implementation</span></div>
+          <div><strong>Inventory</strong><p>Stock overview and secure stock adjustment workflow.</p><span class="b wn">Next implementation</span></div>
+          <div><strong>Orders & Payments</strong><p>Order processing and manual payment review.</p><span class="b wn">Next implementation</span></div>
+        </div>
+      </div>
+      <p id="admDashMessage" class="ac-msg" role="status"></p>
+    </div>
+  </div>
+</section>
 </main>
 <footer><div class="fgrid"><div><a class="logo" href="#top">MEWTERA</a><p>Everyday essentials. A different point of view.</p></div><nav aria-label="Footer shop"><h3>Shop</h3><a href="#shop">Shop</a><a href="#new">New Arrivals</a><a href="#best">Featured Products</a></nav><nav aria-label="Footer brand"><h3>Brand</h3><a href="#story">Our Story</a><a href="#top">Back to top</a></nav><div><h3>Contact</h3><p>Contact details coming soon.</p></div></div><p class="copy">© MEWTERA</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -731,6 +792,60 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
  const menu=$('menuBtn'),nav=$('nav');menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');}));
  $('q').addEventListener('input',e=>{state.query=e.target.value;renderProducts();});$('sort').addEventListener('change',e=>{state.sort=e.target.value;renderProducts();});$('clearFilters').addEventListener('click',()=>{state.category='all';state.query='';state.sort='newest';$('q').value='';$('sort').value='newest';renderCategories();renderProducts();});
  document.addEventListener('click',e=>{const cat=e.target.closest('[data-category]');if(cat){e.preventDefault();state.category=cat.dataset.category;renderCategories();renderProducts();$('shop').scrollIntoView({behavior:'smooth'});return;}const filter=e.target.closest('[data-filter]');if(filter){state.category=filter.dataset.filter;renderCategories();renderProducts();return;}const product=e.target.closest('[data-product]');if(product){renderDetail(product.dataset.product);return;}if(e.target.id==='closeProduct'){$('productDetail').hidden=true;state.selectedProduct=null;}});
+
+ // Secure admin route: /#admin
+ const admSection=$('adm'), admLogin=$('admLogin'), admDash=$('admDashboard');
+ const admMsg=$('admMessage'), admLoginForm=$('admLoginForm'), admMfaForm=$('admMfaForm');
+ let pendingMfaFactor=null;
+ function adminRoute(){const active=location.hash==='#admin';if(admSection){admSection.hidden=!active;document.body.classList.toggle('adm-on',active);if(active){window.scrollTo(0,0);checkExistingAdminSession();}}}
+ async function verifyAdminSession(){
+   const client=window.MEWTERA_SUPABASE;
+   if(!client)throw new Error('Supabase client is unavailable.');
+   const {data:sessionData,error:sessionError}=await client.auth.getSession();
+   if(sessionError)throw sessionError;
+   const session=sessionData.session;
+   if(!session)throw new Error('Please sign in with your admin account.');
+   const {data:aalData,error:aalError}=await client.auth.mfa.getAuthenticatorAssuranceLevel();
+   if(aalError)throw aalError;
+   if(aalData.currentLevel!=='aal2'){
+     const {data:factorsData,error:factorsError}=await client.auth.mfa.listFactors();
+     if(factorsError)throw factorsError;
+     const factor=(factorsData.totp||[]).find(f=>f.status==='verified');
+     if(!factor){throw new Error('No verified authenticator is enrolled. Complete Owner MFA enrollment in Supabase Auth first.');}
+     pendingMfaFactor=factor.id;
+     admLoginForm.hidden=true;admMfaForm.hidden=false;
+     admMsg.textContent='MFA verification required.';
+     return false;
+   }
+   const {data:roleData,error:roleError}=await client.rpc('is_admin');
+   if(roleError)throw new Error('Admin role verification failed: '+roleError.message);
+   const isAdmin=roleData===true || (Array.isArray(roleData)&&roleData[0]===true) || (roleData&&roleData.is_admin===true);
+   if(!isAdmin)throw new Error('This account does not have an active admin role.');
+   admLogin.hidden=true;admDash.hidden=false;$('admExit').hidden=false;
+   $('admWelcome').textContent='Dashboard';
+   $('admIdentity').textContent=session.user.email+' · Admin access verified';
+   $('admProductCount').textContent=String(state.products.length);
+   return true;
+ }
+ async function checkExistingAdminSession(){
+   if(!location.hash.includes('admin'))return;
+   try{await verifyAdminSession();}catch(e){admLogin.hidden=false;admDash.hidden=true;$('admExit').hidden=true;admLoginForm.hidden=false;admMfaForm.hidden=true;admMsg.textContent=e.message;}
+ }
+ admLoginForm.addEventListener('submit',async e=>{
+   e.preventDefault();const client=window.MEWTERA_SUPABASE;const btn=$('admLoginBtn');btn.disabled=true;admMsg.textContent='Signing in…';
+   try{if(!client)throw new Error('Supabase client is unavailable.');const {error}=await client.auth.signInWithPassword({email:$('admEmail').value.trim(),password:$('admPassword').value});if(error)throw error;await verifyAdminSession();}
+   catch(err){admMsg.textContent=err.message;const c=window.MEWTERA_SUPABASE;if(c){await c.auth.signOut();}}
+   finally{btn.disabled=false;}
+ });
+ admMfaForm.addEventListener('submit',async e=>{
+   e.preventDefault();const code=$('admMfaCode').value.trim();const client=window.MEWTERA_SUPABASE;
+   try{if(!pendingMfaFactor)throw new Error('MFA factor is unavailable. Sign in again.');const {error}=await client.auth.mfa.challengeAndVerify({factorId:pendingMfaFactor,code});if(error)throw error;admMfaForm.hidden=true;admMsg.textContent='MFA verified. Checking admin role…';await verifyAdminSession();}
+   catch(err){admMsg.textContent=err.message;}
+ });
+ $('admExit').addEventListener('click',async()=>{if(window.MEWTERA_SUPABASE)await window.MEWTERA_SUPABASE.auth.signOut();admDash.hidden=true;admLogin.hidden=false;admLoginForm.hidden=false;admMfaForm.hidden=true;$('admExit').hidden=true;admMsg.textContent='Signed out.';location.hash='top';});
+ window.addEventListener('hashchange',adminRoute);
+ adminRoute();
+
  loadCatalog();
 })();
 </script>
