@@ -890,7 +890,7 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
      adminState.products=pr.data||[];adminState.variants=vr.data||[];adminState.categories=cr.data||[];adminState.images=im.data||[];
      $('admProductCount').textContent=String(adminState.products.filter(p=>p.status==='active').length);
      $('admCategory').innerHTML='<option value="">No category</option>'+adminState.categories.map(x=>'<option value="'+esc(x.id)+'">'+esc(x.name)+'</option>').join('');
-     $('admCategoryRows').innerHTML=adminState.categories.length?adminState.categories.map(x=>'<p>'+esc(x.name)+' <span class="b '+(x.is_active?'ok':'in')+'">'+(x.is_active?'Active':'Inactive')+'</span></p>').join(''):'No categories have been created yet.';
+     const legacyCategoryRows=$('admCategoryRows');if(legacyCategoryRows)legacyCategoryRows.innerHTML=adminState.categories.length?adminState.categories.map(x=>'<p>'+esc(x.name)+' <span class="b '+(x.is_active?'ok':'in')+'">'+(x.is_active?'Active':'Inactive')+'</span></p>').join(''):'No categories have been created yet.';
      renderAdminProducts();renderAdminCategories();admNotice('Catalog loaded.');
    }catch(e){console.error('[MEWTERA admin catalog]',e);admNotice('Could not load catalog: '+e.message,true);}
  }
@@ -913,7 +913,7 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
  }
  function renderAdminCategories(){
    $('admCategoryTableRows').innerHTML=adminState.categories.length?adminState.categories.map(x=>'<tr><td data-l="Name"><strong>'+esc(x.name)+'</strong></td><td data-l="Slug">'+esc(x.slug)+'</td><td data-l="Sort order">'+esc(x.sort_order)+'</td><td data-l="Status"><span class="b '+(x.is_active?'ok':'in')+'">'+(x.is_active?'Active':'Inactive')+'</span></td><td data-l="Actions"><button type="button" data-edit-category="'+esc(x.id)+'">Edit</button></td></tr>').join(''):'<tr><td colspan="5">No categories created yet.</td></tr>';
-   $('admCategoryRows').innerHTML=adminState.categories.map(x=>'<p>'+esc(x.name)+' <span class="b '+(x.is_active?'ok':'in')+'">'+(x.is_active?'Active':'Inactive')+'</span></p>').join('')||'No categories have been created yet.';
+   const legacyCategoryRows=$('admCategoryRows');if(legacyCategoryRows)legacyCategoryRows.innerHTML=adminState.categories.map(x=>'<p>'+esc(x.name)+' <span class="b '+(x.is_active?'ok':'in')+'">'+(x.is_active?'Active':'Inactive')+'</span></p>').join('')||'No categories have been created yet.';
    $('admCategory').innerHTML='<option value="">No category</option>'+adminState.categories.filter(x=>x.is_active).map(x=>'<option value="'+esc(x.id)+'">'+esc(x.name)+'</option>').join('');
  }
  function openCategoryEditor(row=null){adminState.editingCategory=row?.id||null;$('admCategoryEditor').hidden=false;$('admCategoryEditorTitle').textContent=row?'Edit category':'New category';$('admCategoryId').value=row?.id||'';$('admCategoryName').value=row?.name||'';$('admCategorySlug').value=row?.slug||'';$('admCategorySort').value=row?.sort_order??0;$('admCategoryActive').value=String(row?.is_active!==false);$('admCategoryDescription').value=row?.description||'';$('admCategoryEditor').scrollIntoView({behavior:'smooth',block:'nearest'});}
