@@ -228,6 +228,66 @@ body.pdp-on main>section:not(#pdp){display:none}
 .sgm th,.sgm td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}
 @media(max-width:860px){.pd{grid-template-columns:1fr}.pdp{padding-top:20px}}
 
+/* Phase 5: customer account (demo UI) */
+body.acct-on main>section:not(#acct){display:none}
+.acct{padding-top:32px;max-width:1000px;margin:0 auto}
+.av h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3vw,40px);letter-spacing:-.02em;margin-bottom:18px;outline:none}
+.ac-card{max-width:460px;margin:0 auto}
+.ac-card .btn{margin-top:6px}
+.ac-links{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:14px;font-size:14px}
+.ac-links .lnk{display:inline-block;margin:0;padding:6px 0}
+.pwrap{position:relative}.pwrap input{padding-right:80px}
+.pwb{position:absolute;right:4px;top:50%;transform:translateY(-50%);height:36px;padding:0 10px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.hint{font-size:12.5px;color:var(--mu);margin-top:6px;line-height:1.5}
+.ac-nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.chip[aria-current="page"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.ac-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:18px 0}
+.ac-box{border:1px solid var(--line);padding:18px;min-width:0;overflow-wrap:anywhere}
+.ac-box h3{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);margin-bottom:8px;font-weight:600}
+.ac-form{max-width:520px}
+.olist,.adl{list-style:none}
+.oi,.adr{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid var(--line);padding:16px;margin-bottom:12px}
+.oi>div,.adr>div{min-width:0}
+.oi p,.adr p{margin:4px 0 0;font-size:14px;color:var(--mu);overflow-wrap:anywhere}
+.st{display:inline-block;border:1px solid var(--ink);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;margin-left:8px}
+.dl2{display:grid;grid-template-columns:minmax(110px,max-content) minmax(0,1fr);gap:8px 20px;margin:16px 0;font-size:15px}
+.dl2 dt{color:var(--mu)}.dl2 dd{margin:0;overflow-wrap:anywhere}
+.ac-msg{margin-top:14px;font-size:14px}
+
+/* Phase 6: admin panel (demo UI) */
+body.adm-on main>section:not(#adm){display:none}
+body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
+.adm{max-width:1280px;margin:0 auto;padding-top:20px}
+.adm-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.adm-brand{display:flex;align-items:center;gap:6px}.adm-act{display:flex;gap:8px}
+.mm{display:none}
+.adm-grid{display:grid;grid-template-columns:210px minmax(0,1fr);gap:28px;align-items:start}
+.adm-nav{display:flex;flex-direction:column;gap:4px;position:sticky;top:16px}
+.adm-nav button{text-align:left;padding:11px 14px;border:1px solid transparent;font-size:15px}
+.adm-nav button:hover{background:#f2f1ee}
+.adm-nav button[aria-current="page"]{background:var(--ink);color:#fff}
+.adm-main{min-width:0}
+.b{display:inline-block;padding:2px 8px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;border:1px solid;white-space:nowrap}
+.b.ok{color:#14532d;background:#e6f4ea;border-color:#14532d}.b.wn{color:#7a4a00;background:#fbf0d9;border-color:#7a4a00}.b.bd{color:#8b1a1a;background:#fbe9e9;border-color:#8b1a1a}.b.in{color:#111;background:#f2f1ee;border-color:#111}
+.tw{overflow-x:auto}
+.rt{width:100%;border-collapse:collapse;font-size:14px}
+.rt th{text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);padding:10px 8px;border-bottom:1px solid var(--ink);white-space:nowrap}
+.rt td{padding:11px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+.big{font-family:var(--serif);font-size:32px;line-height:1.1;margin:4px 0}
+.pnl{border:1px solid var(--line);padding:18px;margin-bottom:16px;min-width:0}
+.pnl h3{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);margin-bottom:10px;font-weight:600}
+.two{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px;align-items:start}
+.f select{width:100%;height:46px;padding:0 12px;border:1px solid var(--ink);border-radius:0;background:#fff;font:inherit;font-size:16px}
+.row-btns{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn.sm{width:auto;height:42px;padding:0 20px;font-size:13px}
+.btn.alt{background:#fff;color:var(--ink);border:1px solid var(--ink)}.btn.alt:hover{background:#f2f1ee}
+.phs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.phs div{aspect-ratio:1;background:#f2f1ee;border:1px dashed #d6d3cc;display:flex;align-items:center;justify-content:center;font-size:10px;text-align:center;color:#6b6b6b;padding:4px}
+.ac-msg.err{color:#b00020}
+.ac-msg:focus{outline:none}
+@media(max-width:860px){.adm-grid{grid-template-columns:1fr}.mm{display:inline-flex;align-items:center}.adm-nav{display:none;position:static;flex-direction:row;flex-wrap:wrap}.adm-nav.open{display:flex}.two{grid-template-columns:1fr}}
+@media(max-width:720px){.rt thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.rt,.rt tbody,.rt tr,.rt td{display:block}.rt tr{border:1px solid var(--line);padding:8px 12px;margin-bottom:10px}.rt td{display:flex;justify-content:space-between;gap:12px;border:0;padding:6px 0;text-align:right;min-width:0}.rt td::before{content:attr(data-l);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);text-align:left;flex:none}}
+
 /* Tablet */
 @media(max-width:1024px){
  .hdr{grid-template-columns:auto 1fr auto;gap:16px}
@@ -254,7 +314,7 @@ body.pdp-on main>section:not(#pdp){display:none}
  .menu svg{width:26px;height:26px;stroke:var(--ink);fill:none;stroke-width:1.6}
  .hdr{grid-template-areas:"m l i"}
  .menu{grid-area:m}.logo{grid-area:l;justify-self:center}.icons{grid-area:i;gap:14px}
- .icons .u,.icons .s{display:none}
+ .icons .s{display:none}
  .nav{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:8px var(--pad) 16px}
  .nav.open{display:flex}
  .nav a{padding:14px 0;font-size:17px;border-bottom:1px solid var(--line)}
@@ -282,7 +342,7 @@ body.pdp-on main>section:not(#pdp){display:none}
  <nav class="nav" id="nav" aria-label="Primary"><a href="#shop">Shop</a><a href="#new">New Arrivals</a><a href="#collections">Collections</a><a href="#story">Our Story</a></nav>
  <div class="icons">
   <button class="s" type="button" aria-label="Search" data-demo="Search is not connected yet (demo)."><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7.5"/><path d="m16.5 16.5 4.5 4.5"/></svg></button>
-  <button class="u" type="button" aria-label="Account" data-demo="Accounts are not available yet (demo)."><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></button>
+  <button class="u" id="acctBtn" type="button" aria-label="Account (demo login)"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></button>
   <button class="bag" id="cartBtn" type="button" aria-label="Demo cart (0 items)"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><i id="cnt">0</i></button>
  </div>
 </header>
@@ -397,6 +457,126 @@ body.pdp-on main>section:not(#pdp){display:none}
   </div>
  </div>
 </section>
+<section class="sec acct" id="acct" aria-label="Customer account" hidden>
+ <button type="button" class="lnk l" data-acshop>&larr; Continue Shopping</button>
+ <p class="note" id="acNote" style="margin-top:14px"></p>
+ <p class="sr" id="acLive" role="status" aria-live="polite"></p>
+ <nav class="ac-nav" id="acNav" aria-label="Account sections" hidden>
+  <button type="button" class="chip" data-av="overview">Overview</button><button type="button" class="chip" data-av="profile">Profile</button><button type="button" class="chip" data-av="addresses">Addresses</button><button type="button" class="chip" data-av="orders">My Orders</button><button type="button" class="chip" data-logout>Log out</button>
+ </nav>
+ <div class="av" id="v-login" hidden><div class="ac-card">
+  <h2 tabindex="-1">Log in</h2>
+  <form id="fLogin" novalidate>
+   <div class="f"><label for="lgId">Email or phone</label><input id="lgId" autocomplete="username" required aria-describedby="e-lgId"><p class="err" id="e-lgId"></p></div>
+   <div class="f"><label for="lgPw">Password</label><div class="pwrap"><input id="lgPw" type="password" autocomplete="current-password" required aria-describedby="e-lgPw"><button type="button" class="pwb" data-pw="lgPw" aria-label="Show password" aria-pressed="false">Show</button></div><p class="err" id="e-lgPw"></p></div>
+   <button type="submit" class="btn">Log in (demo)</button>
+  </form>
+  <div class="ac-links"><button type="button" class="lnk" data-av="forgot">Forgot password?</button><button type="button" class="lnk" data-av="signup">Create an account</button></div>
+  <p class="hint">You do not need an account to order. Guest checkout is always available.</p>
+  <div class="ac-links"><button type="button" class="lnk" data-acshop>Back to shopping</button><button type="button" class="lnk" data-opencart>Open cart / guest checkout</button></div>
+ </div></div>
+ <div class="av" id="v-signup" hidden><div class="ac-card">
+  <h2 tabindex="-1">Create an account</h2>
+  <form id="fSignup" novalidate>
+   <div class="f"><label for="suN">Full name</label><input id="suN" autocomplete="name" required aria-describedby="e-suN"><p class="err" id="e-suN"></p></div>
+   <div class="f"><label for="suE">Email</label><input id="suE" type="email" autocomplete="email" required aria-describedby="e-suE"><p class="err" id="e-suE"></p></div>
+   <div class="f"><label for="suP">Phone number</label><input id="suP" type="tel" inputmode="tel" autocomplete="tel" placeholder="01XXXXXXXXX" required aria-describedby="e-suP"><p class="err" id="e-suP"></p></div>
+   <div class="f"><label for="suPw">Password</label><div class="pwrap"><input id="suPw" type="password" autocomplete="new-password" required aria-describedby="suHint e-suPw"><button type="button" class="pwb" data-pw="suPw" aria-label="Show password" aria-pressed="false">Show</button></div><p class="hint" id="suHint">Use at least 8 characters with at least one letter and one number.</p><p class="err" id="e-suPw"></p></div>
+   <div class="f"><label for="suPw2">Confirm password</label><div class="pwrap"><input id="suPw2" type="password" autocomplete="new-password" required aria-describedby="e-suPw2"><button type="button" class="pwb" data-pw="suPw2" aria-label="Show password" aria-pressed="false">Show</button></div><p class="err" id="e-suPw2"></p></div>
+   <button type="submit" class="btn">Create demo account</button>
+  </form>
+  <p class="hint">Demo only: no real account is created and nothing is saved.</p>
+  <div class="ac-links"><button type="button" class="lnk" data-av="login">Already have an account? Log in</button></div>
+ </div></div>
+ <div class="av" id="v-forgot" hidden><div class="ac-card">
+  <h2 tabindex="-1">Forgot password</h2>
+  <form id="fForgot" novalidate>
+   <div class="f"><label for="fgId">Email or phone</label><input id="fgId" autocomplete="username" required aria-describedby="e-fgId"><p class="err" id="e-fgId"></p></div>
+   <button type="submit" class="btn">Request reset (demo)</button>
+  </form>
+  <p class="ac-msg" id="fgMsg" role="status"></p>
+  <div class="ac-links"><button type="button" class="lnk" data-av="login">Back to log in</button></div>
+ </div></div>
+ <div class="av" id="v-overview" hidden><h2 tabindex="-1">My Account</h2><div id="ovBody"></div></div>
+ <div class="av" id="v-profile" hidden><h2 tabindex="-1">Profile</h2>
+  <form id="fProfile" class="ac-form" novalidate>
+   <div class="f"><label for="prN">Full name</label><input id="prN" autocomplete="name" required aria-describedby="e-prN"><p class="err" id="e-prN"></p></div>
+   <div class="f"><label for="prE">Email</label><input id="prE" type="email" autocomplete="email" aria-describedby="e-prE"><p class="err" id="e-prE"></p></div>
+   <div class="f"><label for="prP">Phone number</label><input id="prP" type="tel" inputmode="tel" autocomplete="tel" aria-describedby="e-prP"><p class="err" id="e-prP"></p></div>
+   <button type="submit" class="btn">Save profile (demo)</button>
+  </form>
+  <p class="ac-msg" id="prMsg" role="status"></p>
+ </div>
+ <div class="av" id="v-addresses" hidden><h2 tabindex="-1">Saved addresses</h2>
+  <p class="hint" style="margin:-8px 0 14px">Demo addresses only. Nothing is saved after you leave or reload the page.</p>
+  <ul class="adl" id="adList"></ul>
+  <form id="fAddr" class="ac-form" novalidate>
+   <p class="co-h">Add an address (demo)</p>
+   <div class="f"><label for="adL">Label (for example Home)</label><input id="adL" required aria-describedby="e-adL"><p class="err" id="e-adL"></p></div>
+   <div class="f"><label for="adA">Full address</label><textarea id="adA" required aria-describedby="e-adA"></textarea><p class="err" id="e-adA"></p></div>
+   <div class="row2"><div class="f"><label for="adC">District / City</label><input id="adC" required aria-describedby="e-adC"><p class="err" id="e-adC"></p></div><div class="f"><label for="adR">Area / Thana</label><input id="adR" required aria-describedby="e-adR"><p class="err" id="e-adR"></p></div></div>
+   <button type="submit" class="btn">Add address (demo)</button>
+  </form>
+  <p class="ac-msg" id="adMsg" role="status"></p>
+ </div>
+ <div class="av" id="v-orders" hidden><h2 tabindex="-1">My Orders</h2>
+  <p class="note">These are sample orders for demonstration only. They are not real orders, payments or shipments.</p>
+  <ul class="olist" id="ordList"></ul>
+ </div>
+ <div class="av" id="v-order" hidden><button type="button" class="lnk l" data-av="orders">&larr; Back to My Orders</button><h2 tabindex="-1" id="ordT" style="margin-top:14px">Order details</h2><div id="ordBody"></div></div>
+</section>
+<section class="sec adm" id="adm" aria-label="Admin panel (demo)" hidden>
+ <div class="adm-top"><div class="adm-brand"><span class="logo" style="font-size:26px">MEWTERA</span><span class="badge">Admin · Demo</span></div>
+  <div class="adm-act"><button type="button" class="chip mm" id="admMenu" aria-expanded="false" aria-controls="admNav">Menu</button><button type="button" class="chip" data-adm-exit>&larr; Exit admin</button></div></div>
+ <p class="note">Demo admin panel for UI review only. It is not secured: there is no real admin authentication, and every record is sample data kept in memory.</p>
+ <p class="sr" id="admLive" role="status" aria-live="polite"></p>
+ <div class="adm-grid">
+  <nav class="adm-nav" id="admNav" aria-label="Admin sections"><button type="button" data-ag="dash">Dashboard</button><button type="button" data-ag="orders">Orders</button><button type="button" data-ag="pay">Payments</button><button type="button" data-ag="inv">Inventory</button><button type="button" data-ag="cust">Customers</button><button type="button" data-ag="rep">Reports</button></nav>
+  <div class="adm-main">
+   <div class="av" id="a-dash" hidden></div>
+   <div class="av" id="a-orders" hidden><h2 tabindex="-1">Orders</h2>
+    <div class="ctl" style="margin-bottom:12px">
+     <div class="grow"><label for="oq">Search order ID, customer or phone</label><input id="oq" type="search" autocomplete="off"></div>
+     <div><label for="ost">Order status</label><select id="ost"></select></div>
+     <div><label for="ops">Payment status</label><select id="ops"></select></div>
+     <div><label for="ofrom">From date</label><input id="ofrom" type="date"></div>
+     <div><label for="oto">To date</label><input id="oto" type="date"></div>
+     <button type="button" class="clr" data-a="oclr">Clear filters</button>
+    </div>
+    <p class="hint" id="oCount" role="status" aria-live="polite"></p><div id="oRes"></div></div>
+   <div class="av" id="a-order" hidden></div>
+   <div class="av" id="a-pay" hidden></div>
+   <div class="av" id="a-inv" hidden><h2 tabindex="-1">Products and inventory</h2>
+    <div class="ctl" style="margin-bottom:12px">
+     <div class="grow"><label for="apq">Search products</label><input id="apq" type="search" autocomplete="off"></div>
+     <div><label for="pc">Category</label><select id="pc"></select></div>
+     <button type="button" class="btn sm" data-a="padd">Add product (demo)</button>
+    </div>
+    <p class="ac-msg" id="iMsg" role="status" tabindex="-1"></p><div id="pRes"></div></div>
+   <div class="av" id="a-prod" hidden><h2 tabindex="-1" id="pT">Product</h2>
+    <form data-f="prod" class="ac-form" novalidate>
+     <div class="f"><label for="pN">Product name (sample)</label><input id="pN" required aria-describedby="e-pN"><p class="err" id="e-pN"></p></div>
+     <div class="f"><label for="pD">Description</label><textarea id="pD" aria-describedby="e-pD"></textarea><p class="err" id="e-pD"></p></div>
+     <div class="f"><label for="pCt">Category</label><select id="pCt"></select><p class="hint" id="pCtH"></p></div>
+     <div class="f"><label for="pPr">Demo price (Tk)</label><input id="pPr" inputmode="decimal" required aria-describedby="e-pPr"><p class="err" id="e-pPr"></p></div>
+     <div class="f"><label for="pSt">Status</label><select id="pSt"><option>Active</option><option>Draft</option></select></div>
+     <p class="co-h" style="margin-top:0">Images (placeholders)</p><div class="phs"><div>Image placeholder 1</div><div>Image placeholder 2</div><div>Image placeholder 3</div></div>
+     <div class="row-btns"><button type="submit" class="btn sm">Save product (demo)</button><button type="button" class="btn sm alt" data-ag="inv">Cancel</button></div>
+     <p class="hint">Demo only: changes stay in this admin panel and do not affect the storefront.</p>
+    </form></div>
+   <div class="av" id="a-var" hidden></div>
+   <div class="av" id="a-cust" hidden></div>
+   <div class="av" id="a-cdet" hidden></div>
+   <div class="av" id="a-rep" hidden><h2 tabindex="-1">Reports (demo)</h2>
+    <div class="ctl" style="margin-bottom:12px">
+     <div><label for="rFrom">From date</label><input id="rFrom" type="date"></div>
+     <div><label for="rTo">To date</label><input id="rTo" type="date"></div>
+     <button type="button" class="clr" data-a="rclr">Clear dates</button>
+    </div>
+    <p class="ac-msg" id="rMsg" role="status"></p><div id="rRes"></div></div>
+  </div>
+ </div>
+</section>
 </main>
 
 <footer>
@@ -406,13 +586,17 @@ body.pdp-on main>section:not(#pdp){display:none}
   <nav aria-label="Footer brand"><h3>Brand</h3><a href="#story">Our Story</a><a href="#newsletter">Newsletter</a><a href="#top">Back to top</a></nav>
   <div><h3>Contact</h3><p>Contact details coming soon.</p><p>Social links coming soon.</p></div>
  </div>
- <p class="copy">© MEWTERA. UI prototype with demo content only.</p>
+ <p class="copy">© MEWTERA. UI prototype with demo content only. <button type="button" class="lnk" id="admOpen" style="display:inline;margin:0 0 0 12px;padding:0">Admin panel (demo only)</button></p>
 </footer>
 <div class="sgm" id="sgm" hidden><div class="box" role="dialog" aria-modal="true" aria-labelledby="sgT">
  <div class="ph-h" style="padding:0 0 12px"><h2 id="sgT" tabindex="-1" style="font-size:24px">Size guide</h2><span class="badge">Demo</span><button type="button" class="x" data-sgx aria-label="Close size guide">&times;</button></div>
  <p class="note">Illustrative demo size chart only. These are not verified MEWTERA garment measurements.</p>
  <table><caption class="sr">Illustrative demo size chart in centimeters</caption><thead><tr><th scope="col">Size</th><th scope="col">Chest (cm)</th><th scope="col">Length (cm)</th></tr></thead>
  <tbody><tr><td>S</td><td>96</td><td>68</td></tr><tr><td>M</td><td>102</td><td>70</td></tr><tr><td>L</td><td>108</td><td>72</td></tr><tr><td>XL</td><td>114</td><td>74</td></tr><tr><td>XXL</td><td>120</td><td>76</td></tr></tbody></table>
+</div></div>
+<div class="sgm" id="admCf" hidden><div class="box" role="alertdialog" aria-modal="true" aria-labelledby="cfT" aria-describedby="cfM" style="max-width:420px">
+ <h2 id="cfT" tabindex="-1" style="font-family:var(--serif);font-weight:400;font-size:22px;margin-bottom:10px"></h2><p id="cfM" style="margin-bottom:18px;line-height:1.5"></p>
+ <div class="row-btns"><button type="button" class="btn sm" id="cfOk"></button><button type="button" class="btn sm alt" id="cfNo">Keep as is</button></div>
 </div></div>
 <div class="drw" id="drw" hidden>
  <div class="scrim" data-close></div>
@@ -430,6 +614,7 @@ body.pdp-on main>section:not(#pdp){display:none}
    <section id="vCheck" aria-label="Checkout" hidden>
     <button type="button" class="lnk" id="backCart" style="margin:0 0 12px;padding-left:0">&larr; Back to cart</button>
     <form id="coForm" novalidate>
+     <p class="small" style="margin:0 0 14px">Guest checkout: you do not need an account to place a demo order.</p>
      <p class="co-h" style="margin-top:0">Delivery details</p>
      <div class="f"><label for="fn">Full name (required)</label><input id="fn" name="name" autocomplete="name" required aria-describedby="e-fn"><p class="err" id="e-fn"></p></div>
      <div class="f"><label for="fp">Phone number (required)</label><input id="fp" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="01XXXXXXXXX" required aria-describedby="e-fp"><p class="err" id="e-fp"></p></div>
@@ -456,6 +641,8 @@ body.pdp-on main>section:not(#pdp){display:none}
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
 <script>
 (function(){
  /* EDIT: hero slide copy (draft). The same hero photo is reused for all slides. */
@@ -583,7 +770,7 @@ body.pdp-on main>section:not(#pdp){display:none}
  function openCart(){opener=document.activeElement;clearTimeout(closeT);renderCart();drw.hidden=false;lock(true);show('cart');requestAnimationFrame(function(){drw.classList.add('open');});}
  function closeCart(toShop){
   drw.classList.remove('open');lock(false);clearTimeout(closeT);closeT=setTimeout(function(){drw.hidden=true;},reduce?0:280);
-  if(toShop){closePdp(false);var h=$('shopH');h.setAttribute('tabindex','-1');$('shop').scrollIntoView({behavior:reduce?'auto':'smooth'});h.focus({preventScroll:true});}
+  if(toShop){closePdp(false);closeAcct(false);var h=$('shopH');h.setAttribute('tabindex','-1');$('shop').scrollIntoView({behavior:reduce?'auto':'smooth'});h.focus({preventScroll:true});}
   else if(opener&&opener.focus)opener.focus();
  }
  drw.addEventListener('click',function(e){
@@ -596,13 +783,13 @@ body.pdp-on main>section:not(#pdp){display:none}
   var m=sums();live(a==='rm'?nm+' removed from cart.':'Quantity of '+nm+' is '+l.q+'. Subtotal '+money(m.s)+'.');
   if(a==='rm')(document.querySelector('#lines .rm')||$('emptyBtn')).focus();
  });
- document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(!$('sgm').hidden){closeSg();return;}if(!drw.hidden&&drw.classList.contains('open'))closeCart();});
+ document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(!$('admCf').hidden){cfClose();return;}if(!$('sgm').hidden){closeSg();return;}if(!drw.hidden&&drw.classList.contains('open'))closeCart();});
  $('goCheck').addEventListener('click',function(){if(!C.length)return;renderCo();show('check');});
  $('backCart').addEventListener('click',function(){show('cart');});
  cartBtn.addEventListener('click',openCart);
  document.addEventListener('click',function(e){
   var a=e.target.closest('.add');
-  if(a){addToCart(+a.getAttribute('data-id'),null,null,1,true);return;}
+  if(a){openPdp(+a.getAttribute('data-id'),a);return;}
   var d=e.target.closest('[data-demo]');if(d)toast(d.getAttribute('data-demo'));
  });
 
@@ -644,7 +831,7 @@ body.pdp-on main>section:not(#pdp){display:none}
   if(pushed&&!fromPop){pushed=false;ignorePop=true;setTimeout(function(){ignorePop=false;},400);try{history.back();}catch(x){ignorePop=false;}}else pushed=false;
   if(restore){window.scrollTo({top:pdY,behavior:'instant'});if(pdFrom&&document.body.contains(pdFrom))pdFrom.focus({preventScroll:true});}
  }
- window.addEventListener('popstate',function(){if(ignorePop){ignorePop=false;return;}if(pdpOpen)closePdp(true,true);});
+ window.addEventListener('popstate',function(){if(ignorePop){ignorePop=false;return;}if(pdpOpen)closePdp(true,true);if(acctOpen)closeAcct(true,true);if(admOpen)closeAdm(true,true);});
  function openSg(){sgOpener=document.activeElement;$('sgm').hidden=false;lock(true);$('sgT').focus();}
  function closeSg(){$('sgm').hidden=true;lock(false);if(sgOpener&&sgOpener.focus)sgOpener.focus();}
  $('sgm').addEventListener('click',function(e){if(e.target===this||e.target.closest('[data-sgx]'))closeSg();});
@@ -669,7 +856,359 @@ body.pdp-on main>section:not(#pdp){display:none}
   if(o){e.preventDefault();openPdp(+o.getAttribute('data-open'),o);return;}
   var a=e.target.closest('a[href^="#"]');
   if(a&&pdpOpen&&a.getAttribute('href')!=='#main'&&!a.hasAttribute('data-back'))closePdp(false);
+  if(a&&acctOpen&&a.getAttribute('href')!=='#main')closeAcct(false);
  });
+ /* CUSTOMER ACCOUNT UI (demo only): in-memory state, no real authentication; nothing is saved or sent. */
+ var user=null,acctOpen=false,acctPushed=false,acY=0,acOpener=null,
+  EM=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,PHR=/^(?:\+?88)?01[3-9]\d{8}$/,
+  DASH=['overview','profile','addresses','orders','order'],AV=['login','signup','forgot'].concat(DASH),
+  /* DEMO DATA: sample addresses and sample orders, not real customer data. */
+  ADDR=[{l:'Home',a:'House 12, Road 3, Demo Area',c:'Dhaka',r:'Demo Thana',d:1},{l:'Office',a:'Level 4, Demo Tower, Sample Road',c:'Chattogram',r:'Demo Area',d:0}],
+  ORD=[{id:'DEMO-1001',date:'12 Sep 2026',st:'Delivered',pay:'Cash on Delivery',ps:'COD collected and settled',trk:'DEMO-TRK-48213',it:[[1,'M','Black',2],[5,'L','Charcoal',1]]},
+       {id:'DEMO-1002',date:'03 Oct 2026',st:'Shipped',pay:'bKash (manual)',ps:'Verified, marked Paid',trk:'DEMO-TRK-48377',it:[[8,'XL','Black',1]]},
+       {id:'DEMO-1003',date:'24 Oct 2026',st:'Pending confirmation',pay:'Cash on Delivery',ps:'Pending (COD)',trk:'',it:[[3,'M','Off-white',1]]}];
+ function isPh(v){return PHR.test(v.replace(/[\s-]/g,''));}
+ function acLive(m){var l=$('acLive');l.textContent='';setTimeout(function(){l.textContent=m;},30);}
+ function chkF(rules){
+  var bad=[];
+  rules.forEach(function(r){var el=$(r[0]),ok=r[1](el.value.trim(),el.value);$('e-'+r[0]).textContent=ok?'':r[2];if(ok)el.removeAttribute('aria-invalid');else{el.setAttribute('aria-invalid','true');bad.push(el);}});
+  if(bad.length){bad[0].focus();acLive('Please correct '+bad.length+' field'+(bad.length>1?'s':'')+' in the form.');}
+  return !bad.length;
+ }
+ function ordTot(o){var s=o.it.reduce(function(a,i){return a+P[i[0]][3]*i[3];},0),f=s>=FREE?0:DEL;return{s:s,f:f,t:s+f};}
+ function resetPw(){document.querySelectorAll('#acct [data-pw]').forEach(function(b){$(b.getAttribute('data-pw')).type='password';b.textContent='Show';b.setAttribute('aria-label','Show password');b.setAttribute('aria-pressed','false');});}
+ function renderOv(){
+  $('ovBody').innerHTML='<p>Hello, <b>'+esc(user.name)+'</b> <span class="st" style="margin-left:6px">Demo account</span></p><div class="ac-grid">'+
+   '<div class="ac-box"><h3>Profile</h3><p>'+esc(user.name)+'</p><p>'+(user.email?esc(user.email):'No email provided')+'</p><p>'+(user.phone?esc(user.phone):'No phone provided')+'</p><button type="button" class="lnk l" data-av="profile">Edit profile</button></div>'+
+   '<div class="ac-box"><h3>Saved addresses</h3><p>'+ADDR.length+' saved (demo)</p><button type="button" class="lnk l" data-av="addresses">Manage addresses</button></div>'+
+   '<div class="ac-box"><h3>My orders</h3><p>'+ORD.length+' sample orders (demo)</p><button type="button" class="lnk l" data-av="orders">View orders</button></div></div>'+
+   '<div class="ac-links"><button type="button" class="lnk" data-acshop>Continue shopping</button><button type="button" class="lnk" data-opencart>Open cart / checkout</button><button type="button" class="lnk" data-logout>Log out</button></div>';
+ }
+ function fillPr(){$('prN').value=user.name;$('prE').value=user.email;$('prP').value=user.phone;$('prMsg').textContent='';}
+ function renderAd(){
+  $('adList').innerHTML=ADDR.length?ADDR.map(function(x,i){return '<li class="adr"><div><b>'+esc(x.l)+'</b>'+(x.d?'<span class="st">Default</span>':'')+'<span class="st">Demo address</span><p>'+esc(x.a)+', '+esc(x.r)+', '+esc(x.c)+'</p></div><div>'+(x.d?'':'<button type="button" class="chip" data-adef="'+i+'" aria-label="Set '+esc(x.l)+' as default address">Set as default</button> ')+'<button type="button" class="chip" data-arm="'+i+'" aria-label="Remove '+esc(x.l)+' address">Remove</button></div></li>';}).join(''):'<li class="adr"><p>No saved addresses (demo).</p></li>';
+ }
+ function renderOrd(){
+  $('ordList').innerHTML=ORD.map(function(o,i){var m=ordTot(o),n=o.it.reduce(function(a,x){return a+x[3];},0);return '<li class="oi"><div><b>'+o.id+'</b><span class="st">'+o.st+'</span><p>Sample order · '+o.date+' · '+n+' item'+(n>1?'s':'')+' · '+money(m.t)+'</p></div><button type="button" class="chip" data-ord="'+i+'" aria-label="View details for order '+o.id+'">View details</button></li>';}).join('');
+ }
+ function showOrd(i){
+  var o=ORD[i],m=ordTot(o);$('ordT').textContent='Order '+o.id;
+  $('ordBody').innerHTML='<span class="st" style="margin:0">Sample order (demo)</span><dl class="dl2"><dt>Order ID</dt><dd>'+o.id+'</dd><dt>Date (sample)</dt><dd>'+o.date+'</dd><dt>Order status</dt><dd>'+o.st+'</dd><dt>Payment method</dt><dd>'+o.pay+'</dd><dt>Payment status</dt><dd>'+o.ps+'</dd><dt>Courier tracking ID</dt><dd>'+(o.trk||'Not assigned yet')+'</dd></dl>'+
+   '<p class="co-h">Items</p><ul class="mini">'+o.it.map(function(x){return '<li><span>'+esc(P[x[0]][0])+' · Size '+x[1]+' / '+x[2]+' × '+x[3]+'</span><span>'+money(P[x[0]][3]*x[3])+'</span></li>';}).join('')+'</ul>'+
+   '<dl class="sum"><div><dt>Subtotal</dt><dd>'+money(m.s)+'</dd></div><div><dt>Delivery (demo)</dt><dd>'+(m.f?money(m.f):'Free')+'</dd></div><div class="tot"><dt>Total</dt><dd>'+money(m.t)+'</dd></div></dl>'+
+   '<p class="small">Sample data only: not a real order, payment or shipment. Planned process (not built yet): orders are confirmed manually, manual payments are verified before being marked Paid, and the courier is booked manually.</p>';
+  goAv('order');
+ }
+ function goAv(v){
+  if(!user&&DASH.indexOf(v)>-1)v='login';
+  var dash=DASH.indexOf(v)>-1;
+  AV.forEach(function(n){$('v-'+n).hidden=n!==v;});
+  $('acNav').hidden=!dash;resetPw();
+  document.querySelectorAll('#acNav [data-av]').forEach(function(b){var k=b.getAttribute('data-av');if(k===v||(v==='order'&&k==='orders'))b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
+  if(v==='overview')renderOv();else if(v==='profile')fillPr();else if(v==='addresses'){renderAd();$('adMsg').textContent='';}else if(v==='orders')renderOrd();
+  $('acNote').textContent=dash?'Demo account: sign-in is simulated, nothing is saved, and the orders shown are samples.':'Demo only: sign-in is simulated. No real account is created and nothing is saved.';
+  var h=$('v-'+v).querySelector('h2');window.scrollTo({top:0,behavior:'instant'});h.focus({preventScroll:true});
+ }
+ function openAcct(v){
+  var pb=pushed,had=pdpOpen;
+  if(had)closePdp(false,true);
+  if(!acctOpen){acY=had?pdY:window.scrollY;acOpener=document.activeElement;}
+  acctOpen=true;document.body.classList.add('acct-on');$('acct').hidden=false;
+  try{if(!acctPushed){if(had&&pb)history.replaceState({acct:1},'');else history.pushState({acct:1},'');acctPushed=true;}}catch(x){}
+  goAv(v||(user?'overview':'login'));
+ }
+ function closeAcct(restore,fromPop){
+  if(!acctOpen)return;
+  acctOpen=false;document.body.classList.remove('acct-on');$('acct').hidden=true;
+  if(acctPushed&&!fromPop){acctPushed=false;ignorePop=true;setTimeout(function(){ignorePop=false;},400);try{history.back();}catch(x){ignorePop=false;}}else acctPushed=false;
+  if(restore){window.scrollTo({top:acY,behavior:'instant'});if(acOpener&&document.body.contains(acOpener))acOpener.focus({preventScroll:true});}
+ }
+ function toShop(){closeAcct(false);var h=$('shopH');h.setAttribute('tabindex','-1');$('shop').scrollIntoView({behavior:reduce?'auto':'smooth'});h.focus({preventScroll:true});}
+ function logout(){user=null;$('acctBtn').setAttribute('aria-label','Account (demo login)');goAv('login');acLive('You are logged out of the demo account.');toast('Logged out (demo).');}
+ $('acctBtn').addEventListener('click',function(){openAcct();});
+ $('acct').addEventListener('input',function(e){var er=$('e-'+e.target.id);if(er){er.textContent='';e.target.removeAttribute('aria-invalid');}});
+ $('acct').addEventListener('click',function(e){
+  var t=e.target.closest('[data-pw]');
+  if(t){var i=$(t.getAttribute('data-pw')),sh=i.type==='password';i.type=sh?'text':'password';t.textContent=sh?'Hide':'Show';t.setAttribute('aria-label',sh?'Hide password':'Show password');t.setAttribute('aria-pressed',sh?'true':'false');return;}
+  t=e.target.closest('[data-av]');if(t){goAv(t.getAttribute('data-av'));return;}
+  if(e.target.closest('[data-acshop]')){toShop();return;}
+  if(e.target.closest('[data-opencart]')){openCart();return;}
+  if(e.target.closest('[data-logout]')){logout();return;}
+  t=e.target.closest('[data-ord]');if(t){showOrd(+t.getAttribute('data-ord'));return;}
+  t=e.target.closest('[data-adef]');if(t){var k=+t.getAttribute('data-adef');ADDR.forEach(function(x){x.d=0;});ADDR[k].d=1;renderAd();acLive('Default address updated (demo).');return;}
+  t=e.target.closest('[data-arm]');if(t){ADDR.splice(+t.getAttribute('data-arm'),1);if(ADDR.length&&!ADDR.some(function(x){return x.d;}))ADDR[0].d=1;renderAd();acLive('Address removed (demo).');$('v-addresses').querySelector('h2').focus({preventScroll:true});}
+ });
+ $('fLogin').addEventListener('submit',function(e){
+  e.preventDefault();
+  if(!chkF([['lgId',function(v){return EM.test(v)||isPh(v);},'Enter a valid email address or Bangladesh mobile number.'],['lgPw',function(v,r){return r.length>0;},'Please enter your password.']]))return;
+  var v=$('lgId').value.trim(),em=EM.test(v);user={name:'Demo Customer',email:em?v:'',phone:em?'':v};
+  this.reset();$('acctBtn').setAttribute('aria-label','Account (demo, signed in)');goAv('overview');toast('Demo login only: no real authentication took place.');
+ });
+ $('fSignup').addEventListener('submit',function(e){
+  e.preventDefault();
+  if(!chkF([['suN',function(v){return v.length>=2;},'Please enter your full name.'],['suE',function(v){return EM.test(v);},'Enter a valid email address.'],['suP',function(v){return isPh(v);},'Enter a valid Bangladesh mobile number, for example 01XXXXXXXXX.'],
+   ['suPw',function(v,r){return r.length>=8&&/[A-Za-z]/.test(r)&&/\d/.test(r);},'Use at least 8 characters with a letter and a number.'],['suPw2',function(v,r){return r.length>0&&r===$('suPw').value;},'Passwords do not match.']]))return;
+  user={name:$('suN').value.trim(),email:$('suE').value.trim(),phone:$('suP').value.trim()};
+  this.reset();$('acctBtn').setAttribute('aria-label','Account (demo, signed in)');goAv('overview');toast('Demo account for this session only. Nothing was saved.');
+ });
+ $('fForgot').addEventListener('submit',function(e){
+  e.preventDefault();$('fgMsg').textContent='';
+  if(!chkF([['fgId',function(v){return EM.test(v)||isPh(v);},'Enter a valid email address or Bangladesh mobile number.']]))return;
+  $('fgMsg').textContent='Demo only: no reset email or SMS was sent. Password recovery is not connected yet.';this.reset();
+ });
+ $('fProfile').addEventListener('submit',function(e){
+  e.preventDefault();$('prMsg').textContent='';
+  if(!chkF([['prN',function(v){return v.length>=2;},'Please enter your full name.'],['prE',function(v){return (!v&&$('prP').value.trim()!=='')||EM.test(v);},'Enter a valid email address, or leave it empty and provide a phone number.'],['prP',function(v){return !v||isPh(v);},'Enter a valid Bangladesh mobile number, for example 01XXXXXXXXX.']]))return;
+  user={name:$('prN').value.trim(),email:$('prE').value.trim(),phone:$('prP').value.trim()};
+  $('prMsg').textContent='Saved for this session only (demo). Nothing is stored.';acLive('Profile updated for this demo session.');
+ });
+ $('fAddr').addEventListener('submit',function(e){
+  e.preventDefault();$('adMsg').textContent='';
+  if(ADDR.length>=5){$('adMsg').textContent='Demo limit: up to 5 addresses.';return;}
+  if(!chkF([['adL',function(v){return v.length>=2;},'Please enter a label, for example Home.'],['adA',function(v){return v.length>=10;},'Please enter the full address (at least 10 characters).'],['adC',function(v){return v.length>=2;},'Please enter your district or city.'],['adR',function(v){return v.length>=2;},'Please enter your area or thana.']]))return;
+  ADDR.push({l:$('adL').value.trim(),a:$('adA').value.trim(),c:$('adC').value.trim(),r:$('adR').value.trim(),d:ADDR.length?0:1});
+  this.reset();renderAd();$('adMsg').textContent='Address added for this demo session only.';
+ });
+
+ /* ADMIN PANEL UI (demo only): sample data kept in memory. NOT secured, no backend; nothing is saved or sent. */
+ var admOpen=false,admPushed=false,admY=0,admOpener=null,FM='',FE=false,curO='',curP=null,cfFn=null,cfOpener=null,
+  TODAY=new Date().toISOString().slice(0,10),OF={q:'',st:'',ps:'',from:'',to:''},PF={q:'',c:''},
+  OST=['Pending','Confirmed','Processing','Shipped','Delivered','Cancelled','Delivery Failed','Returned'],
+  PST=['Unpaid','Awaiting Verification','Paid','COD Due','Refunded','Partially Refunded'],
+  NEXT={'Pending':['Confirmed','Cancelled'],'Confirmed':['Processing','Cancelled'],'Processing':['Shipped','Cancelled'],'Shipped':['Delivered','Delivery Failed'],'Delivered':['Returned'],'Delivery Failed':['Shipped','Returned'],'Cancelled':[],'Returned':[]},
+  TONE={'Delivered':'ok','Paid':'ok','Confirmed':'in','Processing':'in','Shipped':'in','Refunded':'in','Pending':'wn','Unpaid':'wn','Awaiting Verification':'wn','COD Due':'wn','Partially Refunded':'wn','Cancelled':'bd','Delivery Failed':'bd','Returned':'bd'},
+  MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+  /* DEMO DATA: sample customers, products, variants and orders. Not real people, stock or sales. */
+  CU=[['Demo Customer A','01711000001','a@example.test','House 1, Road 1, Sample Area, Dhaka'],['Demo Customer B','01811000002','b@example.test','Flat 2B, Sample Tower, Demo Road, Chattogram'],['Demo Customer C','01911000003','c@example.test','House 7, Lane 4, Demo Block, Sylhet'],['Demo Customer D','01611000004','d@example.test','Plot 9, Sample Avenue, Demo Area, Rajshahi'],['Demo Customer E','01511000005','e@example.test','House 3, Road 8, Sample Para, Khulna'],['Demo Customer F','01311000006','f@example.test','Flat 5C, Demo Heights, Sample Street, Dhaka']],
+  AP=P.map(function(p,i){return{id:i,name:p[0],cat:p[1],price:p[3],st:(i===10||i===11)?'Draft':'Active',desc:'Sample product description (demo).'};});
+ function mkV(pi,s,c,st){return{sku:'DEMO-'+('0'+(pi+1)).slice(-2)+'-'+s+'-'+c.slice(0,3).toUpperCase(),size:s,color:c,stock:st,thr:5};}
+ var V=AP.map(function(a,pi){var o=[];SIZES.forEach(function(s,si){COLS[a.cat].forEach(function(c,ci){o.push(mkV(pi,s,c[0],(pi*7+si*5+ci*3)%13));});});return o;}),ADJ=[],
+  RAW=[['A-1001','2026-10-02',0,[[1,'M','Black',2],[5,'L','Charcoal',1]],'COD','Paid','Delivered','','Demo Courier X','DEMO-TRK-1001','2026-10-03',0,'COD settled (demo).'],
+   ['A-1002','2026-10-05',1,[[8,'XL','Black',1]],'bKash','Paid','Delivered','DEMO-BK-7712','Demo Courier X','DEMO-TRK-1002','2026-10-06',0,'Verified (demo).'],
+   ['A-1003','2026-10-09',2,[[0,'L','Off-white',1],[3,'M','Black',1]],'COD','COD Due','Delivered','','Demo Courier Y','DEMO-TRK-1003','2026-10-10',100,'Awaiting COD settlement (demo).'],
+   ['A-1004','2026-10-12',3,[[9,'M','Olive',1]],'Nagad','Paid','Shipped','DEMO-NG-3381','Demo Courier Y','DEMO-TRK-1004','2026-10-13',0,'Verified (demo).'],
+   ['A-1005','2026-10-15',4,[[4,'L','Black',1]],'bKash','Awaiting Verification','Pending','DEMO-BK-9921','','','',0,''],
+   ['A-1006','2026-10-17',0,[[11,'M','Charcoal',1]],'COD','COD Due','Confirmed','','','','',0,''],
+   ['A-1007','2026-10-19',5,[[2,'S','Black',2]],'Nagad','Unpaid','Pending','','','','',0,''],
+   ['A-1008','2026-10-21',1,[[6,'L','Stone',1]],'COD','COD Due','Processing','','','','',0,''],
+   ['A-1009','2026-10-22',2,[[10,'XL','Black',1]],'bKash','Refunded','Cancelled','DEMO-BK-5503','','','',0,'Refunded (demo).'],
+   ['A-1010','2026-10-24',3,[[7,'M','Stone',1]],'COD','COD Due','Delivery Failed','','Demo Courier X','DEMO-TRK-1010','2026-10-25',0,''],
+   ['A-1011','2026-10-25',4,[[1,'L','Stone',1]],'Nagad','Awaiting Verification','Pending','DEMO-NG-6602','','','',0,''],
+   ['A-1012','2026-10-26',5,[[5,'M','Black',1]],'bKash','Partially Refunded','Returned','DEMO-BK-2201','Demo Courier Y','DEMO-TRK-1012','2026-10-27',0,'Partially refunded (demo).']],
+  ORDERS=RAW.map(function(r){var it=r[3].map(function(x){return x.concat(AP[x[0]].price);}),s=it.reduce(function(a,x){return a+x[4]*x[3];},0);
+   return{id:'DEMO-'+r[0],date:r[1],c:r[2],it:it,m:r[4],ps:r[5],st:r[6],ref:r[7],cr:r[8],tk:r[9],bd:r[10],disc:r[11],fee:(s-r[11])>=FREE?0:DEL,note:r[12],cnote:''};});
+ function fd(d){var m=d.split('-');return +m[2]+' '+MON[+m[1]-1]+' '+m[0];}
+ function gO(id){return ORDERS.filter(function(o){return o.id===id;})[0];}
+ function ot(o){var s=o.it.reduce(function(a,x){return a+x[4]*x[3];},0);return{s:s,t:s-o.disc+o.fee};}
+ function bd(x){return '<span class="b '+(TONE[x]||'in')+'">'+x+'</span>';}
+ function tbl(cap,cols,rows){return '<div class="tw"><table class="rt"><caption class="sr">'+cap+'</caption><thead><tr>'+cols.map(function(c){return '<th scope="col">'+c+'</th>';}).join('')+'</tr></thead><tbody>'+rows.map(function(r){return '<tr>'+r.map(function(c,i){return '<td data-l="'+cols[i]+'">'+c+'</td>';}).join('')+'</tr>';}).join('')+'</tbody></table></div>';}
+ function opts(a,sel){return a.map(function(x){return '<option'+(x===sel?' selected':'')+'>'+x+'</option>';}).join('');}
+ function lowV(){var r=[];V.forEach(function(vs,pi){vs.forEach(function(v){if(v.stock<=v.thr)r.push([pi,v]);});});return r;}
+ function sold(os){return os.filter(function(o){return o.st!=='Cancelled'&&o.st!=='Returned';}).reduce(function(a,o){return a+ot(o).t;},0);}
+ function flash(m,err){FM=m;FE=!!err;var l=$('admLive');l.textContent='';setTimeout(function(){l.textContent=m;},30);toast(m);}
+ function putMsg(id){var e=$(id);if(e&&FM){e.textContent=FM;e.className='ac-msg'+(FE?' err':'');e.focus({preventScroll:true});FM='';}}
+ function chkA(rules){
+  var bad=[];
+  rules.forEach(function(r){var el=$(r[0]),ok=r[1](el.value.trim(),el.value),er=$('e-'+r[0]);er.textContent=ok?'':r[2];if(ok)el.removeAttribute('aria-invalid');else{el.setAttribute('aria-invalid','true');bad.push(el);}});
+  if(bad.length){bad[0].focus();$('admLive').textContent='Please correct '+bad.length+' field'+(bad.length>1?'s':'')+' in the form.';}
+  return !bad.length;
+ }
+ function cf(ti,m,ok,fn){cfFn=fn;cfOpener=document.activeElement;$('cfT').textContent=ti;$('cfM').textContent=m;$('cfOk').textContent=ok;$('admCf').hidden=false;lock(true);$('cfNo').focus();}
+ function cfClose(){$('admCf').hidden=true;lock(false);cfFn=null;if(cfOpener&&document.body.contains(cfOpener))cfOpener.focus({preventScroll:true});}
+ $('cfOk').addEventListener('click',function(){var f=cfFn;cfClose();if(f)f();});
+ $('cfNo').addEventListener('click',cfClose);
+ $('admCf').addEventListener('click',function(e){if(e.target===this)cfClose();});
+
+ /* views */
+ function rDash(){
+  var os=ORDERS,n=function(f){return os.filter(f).length;},lo=lowV(),out=lo.filter(function(x){return x[1].stock===0;}).length,
+   cards=[['Total orders',os.length,'orders','',''],['Pending orders',n(function(o){return o.st==='Pending';}),'orders','Pending',''],['Delivered orders',n(function(o){return o.st==='Delivered';}),'orders','Delivered',''],
+    ['Demo sales',money(sold(os)),'rep','',''],['Low-stock variants',lo.length-out+' low · '+out+' out','inv','',''],['Pending payment verification',n(function(o){return o.ps==='Awaiting Verification';}),'orders','','Awaiting Verification']];
+  var recent=os.slice().sort(function(a,b){return a.date<b.date?1:-1;}).slice(0,5);
+  $('a-dash').innerHTML='<h2 tabindex="-1">Dashboard</h2><p class="hint" style="margin:-8px 0 14px">All figures are demo data. Demo sales is the order value of sample orders (excluding cancelled and returned), not real revenue.</p>'+
+   '<div class="ac-grid">'+cards.map(function(c){return '<div class="ac-box"><h3>'+c[0]+'</h3><p class="big">'+c[1]+'</p><span class="b in">Demo data</span><br><button type="button" class="lnk l" data-dgo="'+c[2]+'" data-fs="'+c[3]+'" data-fp="'+c[4]+'" aria-label="View '+c[0]+'">View</button></div>';}).join('')+'</div>'+
+   '<p class="co-h">Recent demo orders</p>'+tbl('Recent demo orders',['Order ID','Date','Order status','Payment status','Total'],recent.map(function(o){return ['<button type="button" class="lnk l" style="margin:0" data-oo="'+o.id+'">'+o.id+'</button>',fd(o.date),bd(o.st),bd(o.ps),money(ot(o).t)];}));
+ }
+ function rOrders(){
+  $('oq').value=OF.q;$('ost').value=OF.st;$('ops').value=OF.ps;$('ofrom').value=OF.from;$('oto').value=OF.to;
+  var q=OF.q.toLowerCase(),l=ORDERS.filter(function(o){var c=CU[o.c];return(!q||o.id.toLowerCase().indexOf(q)>-1||c[0].toLowerCase().indexOf(q)>-1||c[1].indexOf(q)>-1)&&(!OF.st||o.st===OF.st)&&(!OF.ps||o.ps===OF.ps)&&(!OF.from||o.date>=OF.from)&&(!OF.to||o.date<=OF.to);}).sort(function(a,b){return a.date<b.date?1:-1;});
+  $('oCount').textContent='Showing '+l.length+' of '+ORDERS.length+' demo orders';
+  $('oRes').innerHTML=l.length?tbl('Demo orders',['Order ID','Date','Customer','Phone','Items','Total','Payment method','Payment status','Order status','Actions'],l.map(function(o){var c=CU[o.c];return [o.id,fd(o.date),esc(c[0]),c[1],o.it.reduce(function(a,x){return a+x[3];},0),money(ot(o).t),o.m,bd(o.ps),bd(o.st),'<button type="button" class="chip" data-oo="'+o.id+'" aria-label="View order '+o.id+'">View</button>'];})):'<div class="empty"><p>No demo orders match these filters.</p><button type="button" data-a="oclr">Clear filters</button></div>';
+ }
+ function rOrder(id){
+  var o=gO(id),c=CU[o.c],t=ot(o),nx=NEXT[o.st],man=o.m!=='COD';curO=id;
+  var itemRows=o.it.map(function(x){return [esc(AP[x[0]].name),x[1],x[2],x[3],money(x[4]),money(x[4]*x[3])];});
+  var st='<div class="pnl"><h3>Order status</h3><p>Current: '+bd(o.st)+'</p>'+(nx.length?'<form data-f="ustat" novalidate><div class="f" style="margin-top:12px"><label for="osSel">Change order status to</label><select id="osSel">'+opts(nx)+'</select></div><button type="submit" class="btn sm">Update order status</button></form>':'<p class="hint">No further status changes are available for this order.</p>')+'<p class="hint">Changing the order status does not verify or change payment.</p></div>';
+  var pay='<div class="pnl"><h3>Payment (separate from order status)</h3><dl class="dl2"><dt>Method</dt><dd>'+o.m+(man?' (manual)':'')+'</dd><dt>Expected amount</dt><dd>'+money(t.t)+' (demo)</dd><dt>Payment reference</dt><dd>'+(man?(o.ref?esc(o.ref):'None recorded'):'Not applicable (COD)')+'</dd><dt>Payment status</dt><dd>'+bd(o.ps)+'</dd><dt>Settlement notes</dt><dd>'+(o.note?esc(o.note):'None')+'</dd></dl><div class="row-btns">'+
+   (man&&o.ps==='Awaiting Verification'?'<button type="button" class="btn sm" data-a="vpay" data-id="'+o.id+'">Verify payment (demo)</button>':'')+
+   (!man&&o.st==='Delivered'&&o.ps==='COD Due'?'<button type="button" class="btn sm" data-a="cod" data-id="'+o.id+'">Mark COD settled (demo)</button>':'')+'</div>'+
+   (o.ps==='Paid'&&(o.st==='Cancelled'||o.st==='Returned')?'<form data-f="refund" novalidate style="margin-top:12px"><div class="f"><label for="rfSel">Record refund (demo)</label><select id="rfSel">'+opts(['Refunded','Partially Refunded'])+'</select></div><button type="submit" class="btn sm alt">Record refund</button></form>':'')+
+   '<form data-f="ref" novalidate style="margin-top:14px">'+(man?'<div class="f"><label for="prRef">Payment reference (as reported)</label><input id="prRef" value="'+esc(o.ref)+'" aria-describedby="e-prRef"><p class="err" id="e-prRef"></p></div>':'')+'<div class="f"><label for="prNote">Settlement notes</label><textarea id="prNote" aria-describedby="e-prNote">'+esc(o.note)+'</textarea><p class="err" id="e-prNote"></p></div><button type="submit" class="btn sm alt">Save notes</button></form>'+
+   '<p class="hint">Demo only: no real transaction is verified and no money is received.</p></div>';
+  var cr='<div class="pnl"><h3>Courier and delivery (manual)</h3><dl class="dl2"><dt>Delivery status</dt><dd>'+bd(o.st)+'</dd><dt>Courier</dt><dd>'+(o.cr?esc(o.cr):'Not recorded')+'</dd><dt>Tracking ID</dt><dd>'+(o.tk?esc(o.tk):'Not recorded')+'</dd><dt>Booking date</dt><dd>'+(o.bd?fd(o.bd):'Not recorded')+'</dd><dt>Delivery fee</dt><dd>'+money(o.fee)+'</dd></dl>'+
+   '<form data-f="courier" novalidate><div class="f"><label for="cNm">Courier name</label><input id="cNm" value="'+esc(o.cr)+'" aria-describedby="e-cNm"><p class="err" id="e-cNm"></p></div><div class="f"><label for="cTk">Tracking / consignment ID</label><input id="cTk" value="'+esc(o.tk)+'" aria-describedby="e-cTk"><p class="err" id="e-cTk"></p></div><div class="f"><label for="cDt">Booking date</label><input id="cDt" type="date" value="'+o.bd+'" aria-describedby="e-cDt"><p class="err" id="e-cDt"></p></div><div class="f"><label for="cFe">Delivery fee (Tk)</label><input id="cFe" inputmode="numeric" value="'+o.fee+'" aria-describedby="e-cFe"><p class="err" id="e-cFe"></p></div><div class="f"><label for="cNt">Notes</label><textarea id="cNt" aria-describedby="e-cNt">'+esc(o.cnote)+'</textarea><p class="err" id="e-cNt"></p></div><button type="submit" class="btn sm">Save courier details</button></form>'+
+   '<p class="co-h">Delivery actions</p><div class="row-btns">'+['Shipped','Delivered','Delivery Failed','Returned'].map(function(s){return '<button type="button" class="btn sm alt" data-a="qs" data-s="'+s+'" data-id="'+o.id+'"'+(nx.indexOf(s)<0?' disabled':'')+'>Mark '+s+'</button>';}).join('')+'</div><p class="hint">Manual booking only: no courier API is connected.</p></div>';
+  $('a-order').innerHTML='<button type="button" class="lnk l" data-ag="orders">&larr; Back to orders</button><h2 tabindex="-1" style="margin-top:12px">Order '+o.id+'</h2><p class="ac-msg" id="oMsg" role="status" tabindex="-1"></p>'+
+   '<div class="row-btns" style="margin-bottom:16px"><span>Order status:</span>'+bd(o.st)+'<span>Payment status:</span>'+bd(o.ps)+'<span class="b in">Demo order</span></div><div class="two"><div>'+
+   '<div class="pnl"><h3>Customer and delivery</h3><dl class="dl2"><dt>Customer</dt><dd>'+esc(c[0])+'</dd><dt>Phone</dt><dd>'+c[1]+'</dd><dt>Delivery address</dt><dd>'+esc(c[3])+'</dd><dt>Order date</dt><dd>'+fd(o.date)+'</dd></dl></div>'+
+   '<div class="pnl"><h3>Items</h3>'+tbl('Order items',['Product','Size','Color','Qty','Unit price','Line total'],itemRows)+'<dl class="sum"><div><dt>Subtotal</dt><dd>'+money(t.s)+'</dd></div>'+(o.disc?'<div><dt>Discount (demo)</dt><dd>- '+money(o.disc)+'</dd></div>':'')+'<div><dt>Delivery fee</dt><dd>'+money(o.fee)+'</dd></div><div class="tot"><dt>Total</dt><dd>'+money(t.t)+'</dd></div></dl></div></div><div>'+st+pay+cr+'</div></div>';
+  putMsg('oMsg');
+ }
+ function rPay(){
+  var man=ORDERS.filter(function(o){return o.m!=='COD';}),cod=ORDERS.filter(function(o){return o.m==='COD';}),
+   due=cod.filter(function(o){return o.st==='Delivered'&&o.ps==='COD Due';}),paid=cod.filter(function(o){return o.ps==='Paid';});
+  $('a-pay').innerHTML='<h2 tabindex="-1">Payments</h2><p class="ac-msg" id="pMsg2" role="status" tabindex="-1"></p><p class="hint" style="margin:-8px 0 14px">Demo only: marking a payment verified or settled changes sample data. No real transaction is checked and no money is received.</p>'+
+   '<p class="co-h">Manual payments (bKash / Nagad)</p>'+tbl('Manual payments',['Order ID','Method','Expected amount','Reference','Verification status','Order status','Actions'],man.map(function(o){return ['<button type="button" class="lnk l" style="margin:0" data-oo="'+o.id+'">'+o.id+'</button>',o.m,money(ot(o).t),o.ref?esc(o.ref):'None',bd(o.ps),bd(o.st),o.ps==='Awaiting Verification'?'<button type="button" class="chip" data-a="vpay" data-id="'+o.id+'" aria-label="Verify payment for '+o.id+' (demo)">Verify (demo)</button>':'-'];}))+
+   '<p class="co-h">COD collection and settlement</p><dl class="dl2"><dt>COD awaiting settlement (demo)</dt><dd>'+money(due.reduce(function(a,o){return a+ot(o).t;},0))+' across '+due.length+' delivered order(s)</dd><dt>COD marked settled (demo)</dt><dd>'+money(paid.reduce(function(a,o){return a+ot(o).t;},0))+'</dd></dl>'+
+   tbl('COD orders',['Order ID','COD amount','Courier / Tracking','Order status','Payment status','Settlement notes','Actions'],cod.map(function(o){return ['<button type="button" class="lnk l" style="margin:0" data-oo="'+o.id+'">'+o.id+'</button>',money(ot(o).t),o.tk?esc(o.cr)+' / '+esc(o.tk):'Not booked',bd(o.st),bd(o.ps),o.note?esc(o.note):'-',o.st==='Delivered'&&o.ps==='COD Due'?'<button type="button" class="chip" data-a="cod" data-id="'+o.id+'" aria-label="Mark COD settled for '+o.id+' (demo)">Mark settled (demo)</button>':'-'];}));
+  putMsg('pMsg2');
+ }
+ function pSum(pi){var vs=V[pi],tot=0,lo=0,out=0;vs.forEach(function(v){tot+=v.stock;if(v.stock===0)out++;else if(v.stock<=v.thr)lo++;});return{tot:tot,lo:lo,out:out};}
+ function rInv(){
+  var q=PF.q.toLowerCase(),l=AP.filter(function(a){return(!q||a.name.toLowerCase().indexOf(q)>-1)&&(!PF.c||a.cat===PF.c);});
+  $('apq').value=PF.q;$('pc').value=PF.c;
+  $('pRes').innerHTML=l.length?tbl('Sample products',['Product','Category','Demo price','Status','Stock summary','Actions'],l.map(function(a){var s=pSum(a.id);return [esc(a.name),a.cat,money(a.price),bd(a.st==='Active'?'Paid':'Pending').replace(/>(Paid|Pending)</,'>'+a.st+'<'),s.tot+' units'+(s.lo?' · <span class="b wn">'+s.lo+' low</span>':'')+(s.out?' · <span class="b bd">'+s.out+' out</span>':''),'<button type="button" class="chip" data-a="pvar" data-id="'+a.id+'" aria-label="Variants and stock for '+esc(a.name)+'">Variants and stock</button> <button type="button" class="chip" data-a="pedit" data-id="'+a.id+'" aria-label="Edit '+esc(a.name)+'">Edit</button>'];})):'<div class="empty"><p>No sample products match.</p><button type="button" data-a="pclr">Clear filters</button></div>';
+  putMsg('iMsg');
+ }
+ function rProd(i){
+  curP=i;var a=i===null?{name:'',desc:'',cat:'T-Shirts',price:'',st:'Active'}:AP[i];
+  $('pT').textContent=i===null?'Add product (demo)':'Edit product (demo)';
+  $('pN').value=a.name;$('pD').value=a.desc;$('pCt').value=a.cat;$('pCt').disabled=i!==null;$('pPr').value=a.price;$('pSt').value=a.st;
+  $('pCtH').textContent=i===null?'Variants (sizes S-XXL x demo colors) are created with 0 stock.':'Category is fixed after creation in this demo.';
+  ['pN','pD','pPr'].forEach(function(k){$('e-'+k).textContent='';$(k).removeAttribute('aria-invalid');});
+ }
+ function rVar(pi){
+  var a=AP[pi],vs=V[pi],al=vs.filter(function(v){return v.stock<=v.thr;}),log=ADJ.filter(function(x){return x.pi===pi;}).slice(-5).reverse();curP=pi;
+  $('a-var').innerHTML='<button type="button" class="lnk l" data-ag="inv">&larr; Back to products</button><h2 tabindex="-1" style="margin-top:12px">Variants and stock: '+esc(a.name)+'</h2><p class="ac-msg" id="vMsg" role="status" tabindex="-1"></p>'+
+   (al.length?'<p class="note">Stock alerts: '+al.filter(function(v){return v.stock===0;}).length+' out of stock, '+al.filter(function(v){return v.stock>0;}).length+' low stock (sample data).</p>':'<p class="note">No stock alerts for this product (sample data).</p>')+
+   tbl('Variant inventory',['SKU','Size','Color','Available','Low-stock threshold','Alert'],vs.map(function(v){return [v.sku,v.size,v.color+' (demo)',v.stock,v.thr,v.stock===0?'<span class="b bd">Out of stock</span>':v.stock<=v.thr?'<span class="b wn">Low stock</span>':'<span class="b ok">OK</span>'];}))+
+   '<form data-f="adj" class="ac-form" novalidate style="margin-top:20px"><p class="co-h">Adjust stock (demo)</p><div class="f"><label for="avV">Variant</label><select id="avV">'+vs.map(function(v,i){return '<option value="'+i+'">'+v.sku+' ('+v.size+', '+v.color+')</option>';}).join('')+'</select></div>'+
+   '<div class="f"><label for="avM">Adjustment</label><select id="avM"><option value="add">Add stock</option><option value="rem">Remove stock</option><option value="set">Set stock to</option></select></div>'+
+   '<div class="f"><label for="avQ">Quantity</label><input id="avQ" inputmode="numeric" aria-describedby="e-avQ"><p class="err" id="e-avQ"></p></div>'+
+   '<div class="f"><label for="avT">Low-stock threshold (optional)</label><input id="avT" inputmode="numeric" aria-describedby="e-avT"><p class="err" id="e-avT"></p></div>'+
+   '<div class="f"><label for="avR">Reason (required)</label><input id="avR" aria-describedby="e-avR"><p class="err" id="e-avR"></p></div><button type="submit" class="btn sm">Apply adjustment (demo)</button><p class="hint">Demo only: stock is not linked to orders or the storefront.</p></form>'+
+   '<p class="co-h">Recent adjustments (this product)</p>'+(log.length?'<ul class="mini">'+log.map(function(x){return '<li><span>'+x.sku+': '+x.b+' → '+x.a+' ('+esc(x.r)+')</span></li>';}).join('')+'</ul>':'<p class="hint">No adjustments yet.</p>');
+  putMsg('vMsg');
+ }
+ function cStat(i){var os=ORDERS.filter(function(o){return o.c===i;});return{os:os,n:os.length,t:sold(os)};}
+ function rCust(){
+  $('a-cust').innerHTML='<h2 tabindex="-1">Customers (demo)</h2><p class="hint" style="margin:-8px 0 14px">Sample customers only. Purchases total excludes cancelled and returned demo orders.</p>'+tbl('Demo customers',['Name','Phone','Email','Orders','Demo purchases','Actions'],CU.map(function(c,i){var s=cStat(i);return [esc(c[0]),c[1],c[2],s.n,money(s.t),'<button type="button" class="chip" data-cv="'+i+'" aria-label="View '+esc(c[0])+'">View</button>'];}));
+ }
+ function rCdet(i){
+  var c=CU[i],s=cStat(i);
+  $('a-cdet').innerHTML='<button type="button" class="lnk l" data-ag="cust">&larr; Back to customers</button><h2 tabindex="-1" style="margin-top:12px">'+esc(c[0])+'</h2><span class="b in">Demo customer</span><dl class="dl2"><dt>Phone</dt><dd>'+c[1]+'</dd><dt>Email</dt><dd>'+c[2]+'</dd><dt>Address</dt><dd>'+esc(c[3])+'</dd><dt>Orders</dt><dd>'+s.n+'</dd><dt>Demo purchases</dt><dd>'+money(s.t)+'</dd></dl><p class="co-h">Order history</p>'+
+   (s.os.length?tbl('Order history',['Order ID','Date','Total','Payment status','Order status','Actions'],s.os.map(function(o){return [o.id,fd(o.date),money(ot(o).t),bd(o.ps),bd(o.st),'<button type="button" class="chip" data-oo="'+o.id+'" aria-label="View order '+o.id+'">View</button>'];})):'<div class="empty"><p>No demo orders for this customer.</p></div>');
+ }
+ function rRep(){
+  var f=$('rFrom').value,to=$('rTo').value;$('rMsg').textContent='';
+  if(f&&to&&f>to){$('rMsg').textContent='The From date must not be after the To date.';$('rMsg').className='ac-msg err';$('rRes').innerHTML='';return;}
+  $('rMsg').className='ac-msg';
+  var l=ORDERS.filter(function(o){return(!f||o.date>=f)&&(!to||o.date<=to);}),cnt=function(k,v){return l.filter(function(o){return o[k]===v;}).length;},
+   recv=l.filter(function(o){return o.ps==='Paid';}).reduce(function(a,o){return a+ot(o).t;},0),lo=lowV();
+  $('rRes').innerHTML='<p class="note">Demo sales are the order value of sample orders (excluding cancelled and returned). Demo received is the value of orders marked Paid in this demo. Neither is real revenue or money received.</p>'+
+   '<div class="ac-grid"><div class="ac-box"><h3>Demo orders</h3><p class="big">'+l.length+'</p></div><div class="ac-box"><h3>Demo sales (order value)</h3><p class="big">'+money(sold(l))+'</p></div><div class="ac-box"><h3>Demo received (marked Paid)</h3><p class="big">'+money(recv)+'</p></div></div>'+
+   '<p class="co-h">Payment status</p>'+tbl('Payment status counts',['Payment status','Orders'],PST.map(function(s){return [bd(s),cnt('ps',s)];}))+
+   '<p class="co-h">Delivery / order status</p>'+tbl('Order status counts',['Order status','Orders'],OST.map(function(s){return [bd(s),cnt('st',s)];}))+
+   '<p class="co-h">Low-stock and out-of-stock variants (all dates)</p>'+(lo.length?tbl('Low stock variants',['SKU','Product','Variant','Available','Alert'],lo.map(function(x){var v=x[1];return [v.sku,esc(AP[x[0]].name),v.size+' / '+v.color,v.stock,v.stock===0?'<span class="b bd">Out of stock</span>':'<span class="b wn">Low stock</span>'];})):'<p class="hint">No low-stock variants.</p>');
+ }
+ var AVV=['dash','orders','order','pay','inv','prod','var','cust','cdet','rep'],TOPN={order:'orders',prod:'inv','var':'inv',cdet:'cust'};
+ function admGo(v,arg){
+  AVV.forEach(function(n){$('a-'+n).hidden=n!==v;});
+  var top=TOPN[v]||v;
+  document.querySelectorAll('#admNav [data-ag]').forEach(function(b){if(b.getAttribute('data-ag')===top)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
+  if(v==='dash')rDash();else if(v==='orders')rOrders();else if(v==='order')rOrder(arg);else if(v==='pay')rPay();else if(v==='inv')rInv();else if(v==='prod')rProd(arg===undefined?null:arg);else if(v==='var')rVar(arg);else if(v==='cust')rCust();else if(v==='cdet')rCdet(arg);else rRep();
+  $('admNav').classList.remove('open');$('admMenu').setAttribute('aria-expanded','false');
+  window.scrollTo({top:0,behavior:'instant'});var h=$('a-'+v).querySelector('h2');if(h)h.focus({preventScroll:true});
+ }
+ function openAdm(){
+  var had=pdpOpen||acctOpen,pb=pushed||acctPushed,y=pdpOpen?pdY:acctOpen?acY:window.scrollY;
+  if(pdpOpen)closePdp(false,true);if(acctOpen)closeAcct(false,true);
+  if(!admOpen){admY=y;admOpener=document.activeElement;}
+  admOpen=true;document.body.classList.add('adm-on');$('adm').hidden=false;
+  try{if(!admPushed){if(had&&pb)history.replaceState({adm:1},'');else history.pushState({adm:1},'');admPushed=true;}}catch(x){}
+  admGo('dash');
+ }
+ function closeAdm(restore,fromPop){
+  if(!admOpen)return;
+  admOpen=false;document.body.classList.remove('adm-on');$('adm').hidden=true;
+  if(admPushed&&!fromPop){admPushed=false;ignorePop=true;setTimeout(function(){ignorePop=false;},400);try{history.back();}catch(x){ignorePop=false;}}else admPushed=false;
+  if(restore){window.scrollTo({top:admY,behavior:'instant'});if(admOpener&&document.body.contains(admOpener))admOpener.focus({preventScroll:true});}
+ }
+
+ /* order, payment and stock actions (demo) */
+ function setStatus(o,n){
+  if(NEXT[o.st].indexOf(n)<0){flash('Not allowed: '+o.st+' to '+n+'.',1);rOrder(o.id);return;}
+  if(n==='Shipped'&&(!o.cr||!o.tk)){flash('Record the courier name and tracking ID before marking Shipped.',1);rOrder(o.id);return;}
+  var go=function(){o.st=n;flash('Order '+o.id+' marked '+n+' (demo).');rOrder(o.id);};
+  if(n==='Cancelled'||n==='Returned'||n==='Delivery Failed')cf('Mark order as '+n+'?','This changes the order status only'+(o.ps==='Paid'?'; the payment stays Paid and any refund must be recorded separately':'')+'. Demo data only.','Mark '+n,go);else go();
+ }
+ function verifyPay(o){
+  if(o.m==='COD'||o.ps!=='Awaiting Verification')return;
+  if(!o.ref){flash('Add the payment reference before verifying.',1);admGo('order',o.id);return;}
+  cf('Verify payment (demo)?','This marks '+o.id+' as Paid in demo data only. No real transaction is checked and no money is received.','Mark Paid (demo)',function(){o.ps='Paid';o.note=(o.note?o.note+' ':'')+'Verified (demo) '+TODAY+'.';flash('Payment for '+o.id+' marked Paid (demo only).');refreshCur(o.id);});
+ }
+ function settleCod(o){
+  if(o.m!=='COD'||o.st!=='Delivered'||o.ps!=='COD Due')return;
+  cf('Mark COD settled (demo)?','This marks the COD amount for '+o.id+' as settled in demo data only. No real money is received.','Mark settled (demo)',function(){o.ps='Paid';o.note=(o.note?o.note+' ':'')+'COD settled (demo) '+TODAY+'.';flash('COD for '+o.id+' marked settled (demo only).');refreshCur(o.id);});
+ }
+ function refreshCur(id){if(!$('a-order').hidden)rOrder(id);else if(!$('a-pay').hidden)rPay();}
+ $('adm').addEventListener('submit',function(e){
+  e.preventDefault();var f=e.target.getAttribute('data-f'),o=curO?gO(curO):null;
+  if(f==='ustat')setStatus(o,$('osSel').value);
+  else if(f==='refund'){var s=$('rfSel').value;cf('Record '+s.toLowerCase()+'?','This records a refund status for '+o.id+' in demo data only. No real money is moved.','Record '+s.toLowerCase(),function(){o.ps=s;o.note=(o.note?o.note+' ':'')+s+' (demo) '+TODAY+'.';flash('Payment for '+o.id+' marked '+s+' (demo).');rOrder(o.id);});}
+  else if(f==='ref'){
+   var rules=[['prNote',function(v){return v.length<=200;},'Notes must be 200 characters or fewer.']];
+   if($('prRef'))rules.unshift(['prRef',function(v){return !v||/^[A-Za-z0-9-]{4,24}$/.test(v);},'Use 4-24 letters, numbers or hyphens.']);
+   if(!chkA(rules))return;if($('prRef'))o.ref=$('prRef').value.trim();o.note=$('prNote').value.trim();flash('Payment details saved for '+o.id+' (demo).');rOrder(o.id);
+  }
+  else if(f==='courier'){
+   if(['Cancelled','Returned'].indexOf(o.st)>-1){flash('Courier details cannot be edited for '+o.st+' orders.',1);rOrder(o.id);return;}
+   if(!chkA([['cNm',function(v){return v.length>=2;},'Enter the courier name.'],['cTk',function(v){return /^[A-Za-z0-9-]{4,30}$/.test(v);},'Enter a tracking ID: 4-30 letters, numbers or hyphens.'],['cDt',function(v){return /^\d{4}-\d{2}-\d{2}$/.test(v);},'Choose the booking date.'],['cFe',function(v){return /^\d+$/.test(v);},'Enter the delivery fee as a whole number, 0 or more.'],['cNt',function(v){return v.length<=200;},'Notes must be 200 characters or fewer.']]))return;
+   o.cr=$('cNm').value.trim();o.tk=$('cTk').value.trim();o.bd=$('cDt').value;o.fee=+$('cFe').value;o.cnote=$('cNt').value.trim();flash('Courier details saved for '+o.id+' (demo). Total updated.');rOrder(o.id);
+  }
+  else if(f==='prod'){
+   if(!chkA([['pN',function(v){return v.length>=3;},'Enter a product name (at least 3 characters).'],['pPr',function(v){return /^\d+(\.\d{1,2})?$/.test(v)&&+v>0;},'Enter a price greater than 0.'],['pD',function(v){return v.length<=500;},'Description must be 500 characters or fewer.']]))return;
+   var nm=$('pN').value.trim();
+   if(curP===null){var id=AP.length,cat=$('pCt').value;AP.push({id:id,name:nm,cat:cat,price:+$('pPr').value,st:$('pSt').value,desc:$('pD').value.trim()});V.push([]);SIZES.forEach(function(s){COLS[cat].forEach(function(c){V[id].push(mkV(id,s,c[0],0));});});flash('Sample product added (demo): '+nm+'.');}
+   else{var a=AP[curP];a.name=nm;a.price=+$('pPr').value;a.st=$('pSt').value;a.desc=$('pD').value.trim();flash('Sample product updated (demo): '+nm+'.');}
+   admGo('inv');
+  }
+  else if(f==='adj'){
+   var v=V[curP][+$('avV').value],m=$('avM').value;
+   if(!chkA([['avQ',function(x){return /^\d+$/.test(x)&&(m==='set'||+x>0)&&(m!=='rem'||+x<=v.stock);},m==='rem'&&/^\d+$/.test($('avQ').value.trim())&&+$('avQ').value>v.stock?'Cannot remove more than the current stock ('+v.stock+').':'Enter a whole number'+(m==='set'?' (0 or more).':' greater than 0.')],['avT',function(x){return !x||/^\d+$/.test(x);},'Threshold must be a whole number, 0 or more.'],['avR',function(x){return x.length>=3;},'Enter a reason (at least 3 characters).']]))return;
+   var q=+$('avQ').value,b=v.stock;v.stock=m==='add'?b+q:m==='rem'?b-q:q;if($('avT').value.trim())v.thr=+$('avT').value;
+   ADJ.push({pi:curP,sku:v.sku,b:b,a:v.stock,r:$('avR').value.trim()});flash('Stock for '+v.sku+' changed from '+b+' to '+v.stock+' (demo).');rVar(curP);
+  }
+ });
+ $('adm').addEventListener('click',function(e){
+  var t=e.target.closest('[data-ag]');if(t){admGo(t.getAttribute('data-ag'));return;}
+  if(e.target.closest('[data-adm-exit]')){closeAdm(true);return;}
+  t=e.target.closest('[data-dgo]');if(t){OF={q:'',st:t.getAttribute('data-fs'),ps:t.getAttribute('data-fp'),from:'',to:''};admGo(t.getAttribute('data-dgo'));return;}
+  t=e.target.closest('[data-oo]');if(t){admGo('order',t.getAttribute('data-oo'));return;}
+  t=e.target.closest('[data-cv]');if(t){admGo('cdet',+t.getAttribute('data-cv'));return;}
+  t=e.target.closest('[data-a]');if(!t)return;
+  var a=t.getAttribute('data-a'),id=t.getAttribute('data-id');
+  if(a==='oclr'){OF={q:'',st:'',ps:'',from:'',to:''};rOrders();$('oq').focus();}
+  else if(a==='pclr'){PF={q:'',c:''};rInv();}
+  else if(a==='rclr'){$('rFrom').value='';$('rTo').value='';rRep();}
+  else if(a==='padd')admGo('prod',null);
+  else if(a==='pedit')admGo('prod',+id);
+  else if(a==='pvar')admGo('var',+id);
+  else if(a==='vpay')verifyPay(gO(id));
+  else if(a==='cod')settleCod(gO(id));
+  else if(a==='qs')setStatus(gO(id),t.getAttribute('data-s'));
+ });
+ $('adm').addEventListener('input',function(e){var er=$('e-'+e.target.id);if(er){er.textContent='';e.target.removeAttribute('aria-invalid');}});
+ $('oq').addEventListener('input',function(){OF.q=this.value;rOrders();});
+ [['ost','st'],['ops','ps'],['ofrom','from'],['oto','to']].forEach(function(x){$(x[0]).addEventListener('change',function(){OF[x[1]]=this.value;rOrders();});});
+ $('apq').addEventListener('input',function(){PF.q=this.value;rInv();});
+ $('pc').addEventListener('change',function(){PF.c=this.value;rInv();});
+ $('rFrom').addEventListener('change',rRep);$('rTo').addEventListener('change',rRep);
+ $('ost').innerHTML='<option value="">All</option>'+opts(OST);$('ops').innerHTML='<option value="">All</option>'+opts(PST);
+ $('pc').innerHTML='<option value="">All</option>'+opts(Object.keys(COLS));$('pCt').innerHTML=opts(Object.keys(COLS));
+ $('admMenu').addEventListener('click',function(){var o=!$('admNav').classList.contains('open');$('admNav').classList.toggle('open',o);this.setAttribute('aria-expanded',o?'true':'false');});
+ $('admOpen').addEventListener('click',openAdm);
+
  /* checkout form: validation and demo confirmation only (no storage, no network) */
  var RULES=[
   ['fn',function(v){return v.length>=2;},'Please enter your full name.'],
