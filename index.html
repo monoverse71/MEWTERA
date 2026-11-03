@@ -336,6 +336,13 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 /* Supabase catalog image */
 .card .imgw img{width:100%;height:100%;object-fit:cover;display:block}
+
+.adm-image-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-top:16px}
+.adm-image-card{border:1px solid var(--line);padding:8px;min-width:0}
+.adm-image-card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:#f2f2f2}
+.adm-image-card p{font-size:12px;overflow-wrap:anywhere;margin:7px 0}
+.adm-image-card button,.rt button{border:1px solid var(--line);background:#fff;padding:7px 9px;cursor:pointer;margin:2px}
+#admCategoryEditor,#admImageEditor{margin-top:22px;border:1px solid var(--line);padding:16px}
 </style>
 </head>
 <style>
@@ -780,6 +787,17 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
                 <div class="f"><label for="admDescription">Description</label><textarea id="admDescription" rows="4" maxlength="5000"></textarea></div>
                 <div class="row-btns"><button class="btn sm" type="submit" id="admSaveProduct">Save product</button><button class="btn sm alt" type="button" id="admCancelProduct">Cancel</button></div>
               </form>
+              <div id="admImageEditor" hidden>
+                <h3 style="margin-top:24px">Product images</h3>
+                <p class="small">Upload product photos to your existing public Supabase Storage bucket. The bucket name must match the bucket already configured in your project.</p>
+                <form id="admImageForm">
+                  <div class="two"><div class="f"><label for="admImageBucket">Existing Storage bucket name *</label><input id="admImageBucket" required placeholder="Enter your existing public image bucket"></div><div class="f"><label for="admImageAlt">Image alt text</label><input id="admImageAlt" maxlength="250" placeholder="Describe the product image"></div></div>
+                  <div class="two"><div class="f"><label for="admImageFile">Choose image files *</label><input id="admImageFile" type="file" accept="image/jpeg,image/png,image/webp" multiple required></div><div class="f"><label for="admImageSort">Starting sort order</label><input id="admImageSort" type="number" min="0" step="1" value="0"></div></div>
+                  <p class="small">JPG, PNG or WebP. Maximum 8 MB per image. Uploads use the signed-in admin session.</p>
+                  <button class="btn sm" type="submit" id="admUploadImages">Upload images</button>
+                </form>
+                <div id="admImageRows" class="adm-image-grid"></div>
+              </div>
               <div id="admVariantEditor" hidden>
                 <h3 style="margin-top:24px">Add variant</h3>
                 <form id="admVariantForm">
@@ -793,7 +811,7 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
                   </div>
                   <div class="two">
                     <div class="f"><label for="admPrice">Price (BDT) *</label><input id="admPrice" type="number" min="0.01" step="0.01" required></div>
-                    <div class="f"><label for="admVariantStatus">Variant status</label><select id="admVariantStatus"><option value="active">Active</option><option value="draft">Draft</option><option value="archived">Archived</option></select></div>
+                    <div class="f"><label for="admVariantStatus">Variant status</label><select id="admVariantStatus"><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
                   </div>
                   <button class="btn sm" type="submit">Add variant</button>
                 </form>
@@ -801,7 +819,21 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
               </div>
             </div>
           </section>
-          <section id="admCategoriesPanel" class="pnl" hidden><h2>Categories</h2><p class="small">Category creation and management will be enabled in the next module. Existing categories are available in product editing.</p><div id="admCategoryRows"></div></section>
+          <section id="admCategoriesPanel" class="pnl" hidden>
+            <div class="adm-heading"><div><p class="eyebrow">CATALOG STRUCTURE</p><h2>Categories</h2><p class="small">Create and manage the categories used by the storefront.</p></div><button type="button" class="btn sm" id="admNewCategory">Add category</button></div>
+            <p id="admCategoryMsg" class="ac-msg" role="status" aria-live="polite"></p>
+            <div class="tw"><table class="rt"><thead><tr><th>Name</th><th>Slug</th><th>Sort order</th><th>Status</th><th>Actions</th></tr></thead><tbody id="admCategoryTableRows"><tr><td colspan="5">Loading categories…</td></tr></tbody></table></div>
+            <div id="admCategoryEditor" class="pnl" hidden>
+              <h3 id="admCategoryEditorTitle">New category</h3>
+              <form id="admCategoryForm">
+                <input type="hidden" id="admCategoryId">
+                <div class="two"><div class="f"><label for="admCategoryName">Category name *</label><input id="admCategoryName" maxlength="100" required></div><div class="f"><label for="admCategorySlug">Slug *</label><input id="admCategorySlug" maxlength="120" pattern="[a-z0-9]+(?:-[a-z0-9]+)*" required></div></div>
+                <div class="two"><div class="f"><label for="admCategorySort">Sort order</label><input id="admCategorySort" type="number" min="0" step="1" value="0" required></div><div class="f"><label for="admCategoryActive">Visibility</label><select id="admCategoryActive"><option value="true">Active</option><option value="false">Inactive</option></select></div></div>
+                <div class="f"><label for="admCategoryDescription">Description</label><textarea id="admCategoryDescription" rows="3" maxlength="1000"></textarea></div>
+                <div class="row-btns"><button class="btn sm" type="submit" id="admSaveCategory">Save category</button><button class="btn sm alt" type="button" id="admCancelCategory">Cancel</button></div>
+              </form>
+            </div>
+          </section>
         </div>
       </div>
       <p id="admDashMessage" class="ac-msg" role="status"></p>
@@ -822,7 +854,7 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
  const money=poisha=>{const n=Number(poisha);if(!Number.isFinite(n))return 'Price unavailable';const whole=Math.floor(n/100),fraction=n%100;return '৳'+whole.toLocaleString('en-BD')+(fraction?'.'+String(fraction).padStart(2,'0'):'');};
  const setMessage=(html)=>{$('catalogMessage').innerHTML=html;};
  function stateBox(title,message,error=false){return '<div class="catalog-state '+(error?'catalog-error':'')+'"><h3>'+esc(title)+'</h3><p>'+esc(message)+'</p></div>';}
- function imageFor(productId){const row=state.images.find(x=>x.product_id===productId);if(!row)return '';const path=String(row.storage_path||'');if(/^https?:\/\//i.test(path))return path;return '';}
+ function imageFor(productId){const row=state.images.find(x=>x.product_id===productId);if(!row)return '';const path=String(row.storage_path||'');if(/^https?:\/\//i.test(path))return path;const bucket=window.MEWTERA_PRODUCT_IMAGE_BUCKET||'';const client=window.MEWTERA_SUPABASE;if(bucket&&client){const result=client.storage.from(bucket).getPublicUrl(path);return result.data?.publicUrl||'';}return '';}
  function variantsFor(productId){return state.variants.filter(v=>v.product_id===productId);}
  function categoryName(id){const c=state.categories.find(x=>x.id===id);return c?c.name:'';}
  function productCard(p){const img=imageFor(p.id);const priceRows=variantsFor(p.id).map(v=>Number(v.price_poisha)).filter(Number.isFinite);const min=priceRows.length?Math.min(...priceRows):null;return '<article class="product-card"><div class="imgw">'+(img?'<img loading="lazy" src="'+esc(img)+'" alt="'+esc(p.name)+'">':'<div class="ph">Image coming soon</div>')+'</div><div class="product-info"><p class="product-name"><strong>'+esc(p.name)+'</strong></p><small>'+esc(categoryName(p.category_id))+'</small><p class="product-price">'+(min===null?'Price unavailable':'From '+money(min))+'</p><button type="button" data-product="'+esc(p.id)+'">View product</button></div></article>';}
@@ -843,7 +875,9 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
  const admMsg=$('admMessage'), admLoginForm=$('admLoginForm'), admMfaForm=$('admMfaForm');
  let pendingMfaFactor=null;
  
- const adminState={products:[],variants:[],categories:[],editing:null};
+ const adminState={products:[],variants:[],categories:[],images:[],editing:null,editingVariant:null,editingCategory:null};
+ try{window.MEWTERA_PRODUCT_IMAGE_BUCKET=window.localStorage.getItem('mewtera_product_image_bucket')||'';}catch(_){}
+ if($('admImageBucket')&&window.MEWTERA_PRODUCT_IMAGE_BUCKET)$('admImageBucket').value=window.MEWTERA_PRODUCT_IMAGE_BUCKET;
  const admText=(id,value)=>{const el=$(id);if(el)el.textContent=value||'';};
  function admNotice(message,error=false){const el=$('admProductMsg');if(el){el.textContent=message;el.classList.toggle('err',error);}}
  function slugify(value){return String(value||'').normalize('NFKD').toLowerCase().replace(/[\\u0300-\\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
@@ -851,13 +885,13 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
    const c=window.MEWTERA_SUPABASE;if(!c)return;
    admNotice('Loading catalog…');
    try{
-     const [pr,vr,cr]=await Promise.all([c.from('products').select('*').order('created_at',{ascending:false}),c.from('product_variants').select('*').order('created_at',{ascending:false}),c.from('categories').select('*').order('sort_order',{ascending:true})]);
-     const failed=[pr,vr,cr].find(x=>x.error);if(failed)throw failed.error;
-     adminState.products=pr.data||[];adminState.variants=vr.data||[];adminState.categories=cr.data||[];
+     const [pr,vr,cr,im]=await Promise.all([c.from('products').select('*').order('created_at',{ascending:false}),c.from('product_variants').select('*').order('created_at',{ascending:false}),c.from('categories').select('*').order('sort_order',{ascending:true}),c.from('product_images').select('*').order('sort_order',{ascending:true})]);
+     const failed=[pr,vr,cr,im].find(x=>x.error);if(failed)throw failed.error;
+     adminState.products=pr.data||[];adminState.variants=vr.data||[];adminState.categories=cr.data||[];adminState.images=im.data||[];
      $('admProductCount').textContent=String(adminState.products.filter(p=>p.status==='active').length);
      $('admCategory').innerHTML='<option value="">No category</option>'+adminState.categories.map(x=>'<option value="'+esc(x.id)+'">'+esc(x.name)+'</option>').join('');
      $('admCategoryRows').innerHTML=adminState.categories.length?adminState.categories.map(x=>'<p>'+esc(x.name)+' <span class="b '+(x.is_active?'ok':'in')+'">'+(x.is_active?'Active':'Inactive')+'</span></p>').join(''):'No categories have been created yet.';
-     renderAdminProducts();admNotice('Catalog loaded.');
+     renderAdminProducts();renderAdminCategories();admNotice('Catalog loaded.');
    }catch(e){console.error('[MEWTERA admin catalog]',e);admNotice('Could not load catalog: '+e.message,true);}
  }
  function renderAdminProducts(){
@@ -866,11 +900,32 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
    $('admProductRows').innerHTML=rows.length?rows.map(p=>{const count=adminState.variants.filter(v=>v.product_id===p.id).length,cat=adminState.categories.find(c=>c.id===p.category_id);return '<tr><td data-l="Product"><strong>'+esc(p.name)+'</strong><br><small>'+esc(p.slug)+'</small></td><td data-l="Category">'+esc(cat?cat.name:'—')+'</td><td data-l="Variants">'+count+'</td><td data-l="Status"><span class="b '+(p.status==='active'?'ok':p.status==='draft'?'wn':'in')+'">'+esc(p.status)+'</span></td><td data-l="Actions"><button type="button" data-edit-product="'+esc(p.id)+'">Edit</button><button type="button" data-manage-variants="'+esc(p.id)+'">Variants</button></td></tr>';}).join(''):'<tr><td colspan="5">No products found. Add your first real product.</td></tr>';
  }
  function openProductEditor(product=null){
-   adminState.editing=product?product.id:null;$('admProductEditor').hidden=false;$('admEditorTitle').textContent=product?'Edit product':'New product';$('admProductId').value=product?.id||'';$('admName').value=product?.name||'';$('admSlug').value=product?.slug||'';$('admCategory').value=product?.category_id||'';$('admStatus').value=product?.status||'draft';$('admDescription').value=product?.description||'';$('admVariantEditor').hidden=!product;$('admVariantRows').innerHTML='';if(product)renderAdminVariants(product.id);$('admProductEditor').scrollIntoView({behavior:'smooth',block:'start'});
+   adminState.editing=product?product.id:null;$('admProductEditor').hidden=false;$('admEditorTitle').textContent=product?'Edit product':'New product';$('admProductId').value=product?.id||'';$('admName').value=product?.name||'';$('admSlug').value=product?.slug||'';$('admCategory').value=product?.category_id||'';$('admStatus').value=product?.status||'draft';$('admDescription').value=product?.description||'';$('admVariantEditor').hidden=!product;$('admImageEditor').hidden=!product;$('admVariantRows').innerHTML='';if(product){renderAdminVariants(product.id);renderAdminImages(product.id);}$('admProductEditor').scrollIntoView({behavior:'smooth',block:'start'});
  }
- function renderAdminVariants(productId){const rows=adminState.variants.filter(v=>v.product_id===productId);$('admVariantRows').innerHTML=rows.length?rows.map(v=>'<tr><td data-l="SKU">'+esc(v.sku)+'</td><td data-l="Size">'+esc(v.size)+'</td><td data-l="Colour">'+esc(v.color_name)+'</td><td data-l="Price">'+money(v.price_poisha)+'</td><td data-l="Status">'+esc(v.status)+'</td><td data-l="Action"><button type="button" data-archive-variant="'+esc(v.id)+'">Archive</button></td></tr>').join(''):'<tr><td colspan="6">No variants yet.</td></tr>';}
+ function renderAdminVariants(productId){
+   const rows=adminState.variants.filter(v=>v.product_id===productId);
+   $('admVariantRows').innerHTML=rows.length?rows.map(v=>'<tr><td data-l="SKU">'+esc(v.sku)+'</td><td data-l="Size">'+esc(v.size)+'</td><td data-l="Colour">'+esc(v.color_name)+'</td><td data-l="Price">'+money(v.price_poisha)+'</td><td data-l="Status">'+esc(v.status)+'</td><td data-l="Action"><button type="button" data-edit-variant="'+esc(v.id)+'">Edit</button><button type="button" data-archive-variant="'+esc(v.id)+'">Set inactive</button></td></tr>').join(''):'<tr><td colspan="6">No variants yet.</td></tr>';
+ }
+ function renderAdminImages(productId){
+   const rows=adminState.images.filter(x=>x.product_id===productId);
+   const c=window.MEWTERA_SUPABASE;
+   $('admImageRows').innerHTML=rows.map(x=>{let url=x.storage_path||'';if(!/^https?:\/\//i.test(url)){const bucket=$('admImageBucket').value.trim()||window.MEWTERA_PRODUCT_IMAGE_BUCKET;if(bucket){const r=c.storage.from(bucket).getPublicUrl(url);url=r.data?.publicUrl||'';}}return '<div class="adm-image-card">'+(url?'<img src="'+esc(url)+'" alt="'+esc(x.alt||'Product image')+'">':'<div class="ph">Image</div>')+'<p>'+esc(x.alt||x.storage_path)+'</p><button type="button" data-delete-image="'+esc(x.id)+'">Remove</button></div>';}).join('')||'<p class="small">No product images uploaded yet.</p>';
+ }
+ function renderAdminCategories(){
+   $('admCategoryTableRows').innerHTML=adminState.categories.length?adminState.categories.map(x=>'<tr><td data-l="Name"><strong>'+esc(x.name)+'</strong></td><td data-l="Slug">'+esc(x.slug)+'</td><td data-l="Sort order">'+esc(x.sort_order)+'</td><td data-l="Status"><span class="b '+(x.is_active?'ok':'in')+'">'+(x.is_active?'Active':'Inactive')+'</span></td><td data-l="Actions"><button type="button" data-edit-category="'+esc(x.id)+'">Edit</button></td></tr>').join(''):'<tr><td colspan="5">No categories created yet.</td></tr>';
+   $('admCategoryRows').innerHTML=adminState.categories.map(x=>'<p>'+esc(x.name)+' <span class="b '+(x.is_active?'ok':'in')+'">'+(x.is_active?'Active':'Inactive')+'</span></p>').join('')||'No categories have been created yet.';
+   $('admCategory').innerHTML='<option value="">No category</option>'+adminState.categories.filter(x=>x.is_active).map(x=>'<option value="'+esc(x.id)+'">'+esc(x.name)+'</option>').join('');
+ }
+ function openCategoryEditor(row=null){adminState.editingCategory=row?.id||null;$('admCategoryEditor').hidden=false;$('admCategoryEditorTitle').textContent=row?'Edit category':'New category';$('admCategoryId').value=row?.id||'';$('admCategoryName').value=row?.name||'';$('admCategorySlug').value=row?.slug||'';$('admCategorySort').value=row?.sort_order??0;$('admCategoryActive').value=String(row?.is_active!==false);$('admCategoryDescription').value=row?.description||'';$('admCategoryEditor').scrollIntoView({behavior:'smooth',block:'nearest'});}
+ function categoryNotice(msg,error=false){const el=$('admCategoryMsg');el.textContent=msg;el.classList.toggle('err',error);}
  $('admNewProduct').addEventListener('click',()=>openProductEditor());
  $('admCancelProduct').addEventListener('click',()=>{$('admProductEditor').hidden=true;adminState.editing=null;});
+ $('admNewCategory').addEventListener('click',()=>openCategoryEditor());
+ $('admCancelCategory').addEventListener('click',()=>{$('admCategoryEditor').hidden=true;adminState.editingCategory=null;});
+ $('admCategoryName').addEventListener('input',()=>{if(!$('admCategoryId').value)$('admCategorySlug').value=slugify($('admCategoryName').value);});
+ $('admCategoryForm').addEventListener('submit',async e=>{e.preventDefault();const c=window.MEWTERA_SUPABASE,btn=$('admSaveCategory');btn.disabled=true;try{const payload={name:$('admCategoryName').value.trim(),slug:$('admCategorySlug').value.trim(),sort_order:Number($('admCategorySort').value),is_active:$('admCategoryActive').value==='true',description:$('admCategoryDescription').value.trim()||null,updated_at:new Date().toISOString()};let q=adminState.editingCategory?c.from('categories').update(payload).eq('id',adminState.editingCategory):c.from('categories').insert(payload);const {error}=await q;if(error)throw error;categoryNotice('Category saved.');$('admCategoryEditor').hidden=true;adminState.editingCategory=null;await loadAdminProducts();}catch(err){categoryNotice('Category save failed: '+err.message,true);}finally{btn.disabled=false;}});
+ $('admImageForm').addEventListener('submit',async e=>{e.preventDefault();const c=window.MEWTERA_SUPABASE,productId=adminState.editing,bucket=$('admImageBucket').value.trim(),files=Array.from($('admImageFile').files||[]),btn=$('admUploadImages');if(!productId){admNotice('Save the product before uploading images.',true);return;}if(!bucket){admNotice('Enter the exact name of the existing public image bucket.',true);return;}window.MEWTERA_PRODUCT_IMAGE_BUCKET=bucket;try{window.localStorage.setItem('mewtera_product_image_bucket',bucket);}catch(_){}if(!files.length){admNotice('Choose at least one image.',true);return;}btn.disabled=true;try{let order=Number($('admImageSort').value)||0;for(const file of files){if(!/^image\/(jpeg|png|webp)$/.test(file.type)||file.size>8*1024*1024)throw new Error('Only JPG, PNG or WebP images up to 8 MB are allowed.');const ext=file.type==='image/jpeg'?'jpg':file.type.split('/')[1];const path='products/'+productId+'/'+crypto.randomUUID()+'.'+ext;const up=await c.storage.from(bucket).upload(path,file,{cacheControl:'3600',upsert:false,contentType:file.type});if(up.error)throw up.error;const ins=await c.from('product_images').insert({product_id:productId,storage_path:path,alt:$('admImageAlt').value.trim()||file.name,sort_order:order++});if(ins.error){await c.storage.from(bucket).remove([path]);throw ins.error;}}$('admImageForm').reset();$('admImageSort').value=String(order);await loadAdminProducts();renderAdminImages(productId);admNotice('Product images uploaded.');}catch(err){admNotice('Image upload failed: '+err.message,true);}finally{btn.disabled=false;}});
+
  $('admName').addEventListener('input',()=>{if(!$('admProductId').value)$('admSlug').value=slugify($('admName').value);});
  $('admProductSearch').addEventListener('input',renderAdminProducts);$('admProductStatus').addEventListener('change',renderAdminProducts);$('admRefreshProducts').addEventListener('click',loadAdminProducts);
  $('admProductForm').addEventListener('submit',async e=>{
@@ -883,13 +938,17 @@ body.adm-on .ann,body.adm-on .hdr,body.adm-on footer{display:none}
  $('admVariantForm').addEventListener('submit',async e=>{
    e.preventDefault();const c=window.MEWTERA_SUPABASE,productId=adminState.editing;if(!productId){admNotice('Save the product before adding variants.',true);return;}
    const price=Number($('admPrice').value);if(!Number.isFinite(price)||price<=0){admNotice('Enter a valid price.',true);return;}
-   try{const payload={product_id:productId,sku:$('admSku').value.trim(),size:$('admVariantSize').value.trim(),color_name:$('admColorName').value.trim(),color_hex:$('admColorHex').value,price_poisha:Math.round(price*100),status:$('admVariantStatus').value};const {error}=await c.from('product_variants').insert(payload);if(error)throw error;$('admVariantForm').reset();$('admColorHex').value='#111111';await loadAdminProducts();renderAdminVariants(productId);admNotice('Variant added.');}
+   try{const payload={product_id:productId,sku:$('admSku').value.trim(),size:$('admVariantSize').value.trim(),color_name:$('admColorName').value.trim(),color_hex:$('admColorHex').value,price_poisha:Math.round(price*100),status:$('admVariantStatus').value,updated_at:new Date().toISOString()};const editId=$('admVariantForm').dataset.editId;const q=editId?c.from('product_variants').update(payload).eq('id',editId):c.from('product_variants').insert(payload);const {error}=await q;if(error)throw error;$('admVariantForm').reset();delete $('admVariantForm').dataset.editId;$('admVariantForm').querySelector('button[type="submit"]').textContent='Add variant';$('admColorHex').value='#111111';await loadAdminProducts();renderAdminVariants(productId);admNotice(editId?'Variant updated.':'Variant added.');}
    catch(err){admNotice('Variant could not be added: '+err.message,true);}
  });
  document.addEventListener('click',async e=>{
    const edit=e.target.closest('[data-edit-product]');if(edit){const p=adminState.products.find(x=>x.id===edit.dataset.editProduct);if(p)openProductEditor(p);}
+   const editCat=e.target.closest('[data-edit-category]');if(editCat){const row=adminState.categories.find(x=>x.id===editCat.dataset.editCategory);if(row)openCategoryEditor(row);}
+   const editVar=e.target.closest('[data-edit-variant]');if(editVar){const v=adminState.variants.find(x=>x.id===editVar.dataset.editVariant);if(v){$('admSku').value=v.sku;$('admVariantSize').value=v.size;$('admColorName').value=v.color_name;$('admColorHex').value=v.color_hex||'#111111';$('admPrice').value=(Number(v.price_poisha)/100).toFixed(2);$('admVariantStatus').value=v.status;$('admVariantForm').dataset.editId=v.id;$('admVariantForm').querySelector('button[type="submit"]').textContent='Save variant changes';$('admVariantForm').scrollIntoView({behavior:'smooth',block:'center'});}}
+   const delImg=e.target.closest('[data-delete-image]');if(delImg&&confirm('Remove this image from the product gallery?')){const c=window.MEWTERA_SUPABASE,row=adminState.images.find(x=>x.id===delImg.dataset.deleteImage);if(row){const bucket=$('admImageBucket').value.trim();try{const {error}=await c.from('product_images').delete().eq('id',row.id);if(error)throw error;if(bucket&&!/^https?:\/\//i.test(row.storage_path)){const rm=await c.storage.from(bucket).remove([row.storage_path]);if(rm.error)console.warn('Storage object removal failed',rm.error);}await loadAdminProducts();if(adminState.editing)renderAdminImages(adminState.editing);admNotice('Image removed.');}catch(err){admNotice('Image removal failed: '+err.message,true);}}}
+
    const vars=e.target.closest('[data-manage-variants]');if(vars){const p=adminState.products.find(x=>x.id===vars.dataset.manageVariants);if(p)openProductEditor(p);}
-   const arch=e.target.closest('[data-archive-variant]');if(arch&&confirm('Archive this variant?')){const c=window.MEWTERA_SUPABASE;const {error}=await c.from('product_variants').update({status:'archived',updated_at:new Date().toISOString()}).eq('id',arch.dataset.archiveVariant);if(error)admNotice('Archive failed: '+error.message,true);else{await loadAdminProducts();if(adminState.editing)renderAdminVariants(adminState.editing);}}
+   const arch=e.target.closest('[data-archive-variant]');if(arch&&confirm('Archive this variant?')){const c=window.MEWTERA_SUPABASE;const {error}=await c.from('product_variants').update({status:'inactive',updated_at:new Date().toISOString()}).eq('id',arch.dataset.archiveVariant);if(error)admNotice('Archive failed: '+error.message,true);else{await loadAdminProducts();if(adminState.editing)renderAdminVariants(adminState.editing);}}
    const tab=e.target.closest('[data-adm-tab]');if(tab){document.querySelectorAll('[data-adm-tab]').forEach(x=>x.removeAttribute('aria-current'));tab.setAttribute('aria-current','page');$('admProductsPanel').hidden=tab.dataset.admTab!=='products';$('admCategoriesPanel').hidden=tab.dataset.admTab!=='categories';}
  });
  function adminRoute(){const active=location.hash==='#admin';if(admSection){admSection.hidden=!active;document.body.classList.toggle('adm-on',active);if(active){window.scrollTo(0,0);checkExistingAdminSession();}}}
