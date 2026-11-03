@@ -1,25 +1,20 @@
 
 /*
- * MEWTERA — Supabase Client
- * Phase 2: Read-only product catalog
- *
- * Database reads are handled by index.html.
- * This file only initializes the Supabase client.
- *
- * No checkout, orders, payments, authentication or database writes.
+ * MEWTERA — Production Supabase Client
+ * Phase 2: Real Storefront Catalog
+ * Read-only initialization
  */
 
 (function (window) {
   'use strict';
 
-  // Public Supabase configuration
-  var SUPABASE_URL =
+  const SUPABASE_URL =
     'https://ouicacckzeiiavqnbcwp.supabase.co';
 
-  var SUPABASE_PUBLISHABLE_KEY =
+  const SUPABASE_PUBLISHABLE_KEY =
     'sb_publishable_56YAZLp3jY3gHvi0XTtrsA_qrsXCyxj';
 
-  var status = {
+  const status = {
     configured: false,
     ready: false,
     reason: 'not initialised',
@@ -31,30 +26,15 @@
 
   function disable(reason) {
     status.reason = reason;
-
-    console.warn(
-      '[MEWTERA] Supabase disabled:',
-      reason
-    );
+    console.error('[MEWTERA] Supabase:', reason);
   }
 
-  // Reject secret keys
-  var key = String(
-    SUPABASE_PUBLISHABLE_KEY || ''
-  ).trim();
-
-  if (!key) {
-    disable('publishable key missing');
-    return;
-  }
-
-  if (/^sb_secret_/i.test(key)) {
-    disable('secret key refused');
-    return;
-  }
-
-  if (!/^sb_publishable_/i.test(key)) {
-    disable('invalid publishable key format');
+  // Validate public key
+  if (
+    !SUPABASE_PUBLISHABLE_KEY ||
+    !SUPABASE_PUBLISHABLE_KEY.startsWith('sb_publishable_')
+  ) {
+    disable('Invalid publishable key');
     return;
   }
 
@@ -64,46 +44,50 @@
       SUPABASE_URL
     )
   ) {
-    disable('invalid Supabase URL');
+    disable('Invalid Supabase project URL');
     return;
   }
 
-  // Check Supabase JS CDN
+  // Check Supabase JS library
   if (
     !window.supabase ||
     typeof window.supabase.createClient !== 'function'
   ) {
-    disable('Supabase JS library not loaded');
+    disable('Supabase JS CDN not loaded');
     return;
   }
 
-  // Initialize client
   try {
-    window.MEWTERA_SUPABASE =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        key,
-        {
-          auth: {
-            persistSession: false,
-            autoRefreshToken: false,
-            detectSessionInUrl: false
+    const client = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY,
+      {
+        auth: {
+          persistSession: false,
+          autoRefreshToken: false,
+          detectSessionInUrl: false
+        },
+        global: {
+          headers: {
+            'X-Client-Info': 'mewtera-storefront'
           }
         }
-      );
+      }
+    );
+
+    window.MEWTERA_SUPABASE = client;
 
     status.configured = true;
     status.ready = true;
     status.reason = 'ok';
 
     console.info(
-      '[MEWTERA] Supabase client initialized successfully.'
+      '[MEWTERA] Supabase client initialized.'
     );
 
   } catch (error) {
     window.MEWTERA_SUPABASE = null;
-    disable('client initialization failed');
-
+    disable('Client initialization failed');
     console.error(error);
   }
 
